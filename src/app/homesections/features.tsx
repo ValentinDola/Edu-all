@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Features() {
   return (
-    <section className="overflow-hidden pb-0">
-      <div className="grid grid-cols-2 gap-3 max-w-[1380px] w-full mx-3 my-0 px-5 py-0">
+    <section className="overflow-hidden pb-4">
+      <div className="grid grid-cols-2 gap-5 max-w-[1380px] w-full mx-auto my-0 px-5 py-0">
         <div className="w-[606px] h-[158px] p-3">
           <h1 className="text-[40px]">Dream. Discover. Decide.</h1>
           <p className="text-base">
