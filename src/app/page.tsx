@@ -1,9 +1,15 @@
 import Image from "next/image";
+import React from "react";
+import Cookie from "./cookie";
+import Navigation from "./navigation";
+import Homepage from "./homepage";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>Edu-all</div>
-    </main>
+    <div>
+      <Navigation />
+      <Homepage />
+      <Cookie />
+    </div>
   );
 }
