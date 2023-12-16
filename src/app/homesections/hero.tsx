@@ -1,51 +1,6 @@
 import React, { useState } from "react";
 
 export default function Hero() {
-  const testimonials = [
-    {
-      source: "/wura.jpg",
-      quote:
-        "Je suis devenu plus conscient de la façon dont je dépense mon argent et aussi de mes investissements. Désormais, je me sens à l’aise de dépenser en sachant que mon compte Epargne est là.",
-      name: "wuwu",
-      href: "/",
-      username: "@wuwu",
-      background: "rgb(255,236,219)",
-    },
-    {
-      source: "/wande.jpg",
-      quote:
-        "Je suis devenu plus conscient de la façon dont je dépense mon argent et aussi de mes investissements. Désormais, je me sens à l’aise de dépenser en sachant que mon compte Epargne est là.",
-      name: "Donne D",
-      href: "/",
-      username: "@donnevi",
-      background: "rgb(255,236,219)",
-    },
-    {
-      source: "/mayokun.jpg",
-      quote:
-        "Je suis devenu plus conscient de la façon dont je dépense mon argent et aussi de mes investissements. Désormais, je me sens à l’aise de dépenser en sachant que mon compte Epargne est là.",
-      name: "Adjovi L",
-      href: "/",
-      username: "@adjoa",
-      background: "rgb(255,236,219)",
-    },
-  ];
-
-  const handleTestimonailActivity = (i: React.SetStateAction<number>) =>
-    setActiveThumbnailImage(i);
-
-  const getImage = (i: number) => {
-    return testimonials[i].source;
-  };
-
-  const getQuote = (i: number) => testimonials[i].quote;
-
-  const getName = (i: number) => testimonials[i].name;
-
-  const getUsername = (i: number) => testimonials[i].username;
-
-  const getHref = (i: number) => testimonials[i].href;
-
   return (
     <section>
       <div className="max-w-[1380px] w-full mx-auto mt-9 mb-0 px-5 py-0">
