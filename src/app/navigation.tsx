@@ -2,6 +2,7 @@
 
 import React, { useState, Fragment, useEffect } from "react";
 import Link from "next/link";
+import classnames from "classnames";
 import { usePathname } from "next/navigation";
 
 export default function Navigation() {
@@ -80,12 +81,12 @@ export default function Navigation() {
         </ul>
         <ul className="visible opacity-100 pl-8 pr-0 pt-2.5 pb-0">
           <li className="mt-[18px]">
-            <a href="/" className="text-[#FFFFFF99]">
+            <a href="/signup" className="text-[#FFFFFF99]">
               SIGN UP
             </a>
           </li>
           <li className="mt-[18px]">
-            <a href="/" className="text-[#FFFFFF99]">
+            <a href="/login" className="text-[#FFFFFF99]">
               LOG IN
             </a>
           </li>
@@ -135,11 +136,18 @@ export default function Navigation() {
               {link.map((item, i) => (
                 <li key={i} className="mx-5 my-0">
                   <Link
-                    className={`link ${
-                      pathname === `${item.href}`
-                        ? "text-[#0066F5] font-bold outline-none uppercase text-[16px] cursor-pointer"
-                        : "outline-none uppercase text-[14px] font-medium cursor-pointer hover:text-[#0066F5] hover:font-semibold"
-                    }`}
+                    className={classnames({
+                      "text-[#0066F5] font-bold outline-none uppercase text-[16px] cursor-pointer":
+                        item.href === pathname,
+                      "outline-none uppercase text-[14px] font-medium cursor-pointer":
+                        item.href !== pathname,
+                      "hover:text-[#0066F5] font-semibold": true,
+                    })}
+                    // className={`link ${
+                    //   pathname === `${item.href}`
+                    //     ? "text-[#0066F5] font-bold outline-none uppercase text-[16px] cursor-pointer"
+                    //     : "outline-none uppercase text-[14px] font-medium cursor-pointer hover:text-[#0066F5] hover:font-semibold"
+                    // }`}
                     href={item.href}
                   >
                     {item.name}
@@ -149,14 +157,17 @@ export default function Navigation() {
             </ul>
             <div className="flex justify-between items-center">
               <a
-                href="/"
+                href="/login"
                 className={
                   "mr-7 text-base bg-[none] text-[#0066f5] shadow-none p-0 font-semibold max-[980px]:hidden "
                 }
               >
                 LOG IN{" "}
               </a>
-              <a href="/" className={"button_auth max-[980px]:hidden"}>
+              <a
+                href="/pages/auth/signup"
+                className={"button_auth max-[980px]:hidden"}
+              >
                 SIGN UP
               </a>
             </div>

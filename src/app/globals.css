@@ -906,6 +906,23 @@ button {
   padding: 1rem;
 }
 
+.input {
+  appearance: none;
+  transition: border-color .3s ease-in, color 1s linear;
+  width: 100%;
+  display: block;
+  height: 56px;
+  background-color: transparent;
+  border-radius: 4px;
+  outline: none;
+  color: #0a2e65;
+  border: 1px solid rgba(10, 46, 101, .1);
+  font-size: .95rem;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
 
 
 /* ------- */
