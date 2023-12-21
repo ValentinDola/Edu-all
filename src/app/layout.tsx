@@ -1,8 +1,9 @@
 import React from "react";
-
+import { Providers } from "./providers";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Navigation from "./navigation";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -20,8 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+    <html lang="en" className="light">
+      <body className={montserrat.className}>
+        <Providers>
+          <Navigation />
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

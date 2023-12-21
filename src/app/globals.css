@@ -911,8 +911,7 @@ button {
   transition: border-color .3s ease-in, color 1s linear;
   width: 100%;
   display: block;
-  height: 56px;
-  background-color: transparent;
+  height: 50px;
   border-radius: 4px;
   outline: none;
   color: #0a2e65;

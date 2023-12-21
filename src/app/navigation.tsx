@@ -9,7 +9,6 @@ export default function Navigation() {
   const pathname = usePathname();
 
   const link = [
-    { name: "Home", href: "/" },
     { name: "Career", href: "/career" },
     { name: "Universities", href: "/unis" },
     { name: "Events", href: "/events" },

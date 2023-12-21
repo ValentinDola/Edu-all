@@ -8,6 +8,20 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  email String
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  firstName     String
+  lastName      String
+  email         String
+  skills        String[]
+  interest      String[]
+  qualification Qualification[]
+}
+
+model Qualification {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  degree         String
+  school         String
+  graduationYear Int
+  userId         String @db.ObjectId
+  user           User   @relation(fields: [userId], references: [id])
 }
