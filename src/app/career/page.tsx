@@ -1,5 +1,8 @@
+"use client";
+
+import { careerData } from "@/lib/careerapi";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Career() {
   const careers = [
@@ -28,6 +31,11 @@ export default function Career() {
         "An IT technician collaborates with support specialists to analyze and diagnose computer issues. They also monitor processing functions, install relevant software and perform tests on computer equipment and applications when necessary. They may also train a company's employees, clients and other users on a new program or function as well.",
     },
   ];
+
+  //   useEffect(() => {
+  //     const data = careerData();
+  //     console.log(data);
+  //   }, []);
 
   return (
     <section className="mt-[50px] ">

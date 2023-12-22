@@ -8,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(auto()) @map("_id") @db.ObjectId
-  firstName     String
-  lastName      String
-  email         String
-  skills        String[]
-  interest      String[]
-  qualification Qualification[]
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  firstName      String
+  lastName       String
+  email          String          @unique
+  hashedPassword String?
+  skills         String[]
+  interest       String[]
+  qualification  Qualification[]
 }
 
 model Qualification {
