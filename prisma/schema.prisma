@@ -8,14 +8,28 @@ datasource db {
 }
 
 model User {
-  id             String          @id @default(auto()) @map("_id") @db.ObjectId
-  firstName      String
-  lastName       String
-  email          String          @unique
-  hashedPassword String?
-  skills         String[]
-  interest       String[]
-  qualification  Qualification[]
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String          @unique
+  password      String?
+  createdAt     DateTime        @default(now())
+  skills        Skills?
+  interest      Interest?
+  qualification Qualification[]
+}
+
+model Skills {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique @db.ObjectId
+}
+
+model Interest {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique @db.ObjectId
 }
 
 model Qualification {
@@ -25,4 +39,42 @@ model Qualification {
   graduationYear Int
   userId         String @db.ObjectId
   user           User   @relation(fields: [userId], references: [id])
+}
+
+model Career {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  description     String
+  skills          String[]
+  areasOfInterest String[]
+  courses         Course[]
+  books           Books[]
+  videos          Videos[]
+}
+
+model Course {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  courseName String
+  platform   String
+  url        String
+  careerId   String @db.ObjectId
+  career     Career @relation(fields: [careerId], references: [id])
+}
+
+model Books {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  author   String
+  url      String
+  careerId String @db.ObjectId
+  career   Career @relation(fields: [careerId], references: [id])
+}
+
+model Videos {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  channel  String
+  url      String
+  careerId String @db.ObjectId
+  career   Career @relation(fields: [careerId], references: [id])
 }

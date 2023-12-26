@@ -1,9 +1,9 @@
 import React from "react";
-import { Providers } from "./providers";
+import { Providers, AuthProvider } from "./providers";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Navigation from "./navigation";
+import Navigation from "./navigation/navigation";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -24,8 +24,7 @@ export default function RootLayout({
     <html lang="en" className="light">
       <body className={montserrat.className}>
         <Providers>
-          <Navigation />
-          {children}
+          <AuthProvider>{children}</AuthProvider>
         </Providers>
       </body>
     </html>
