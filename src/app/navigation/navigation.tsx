@@ -15,11 +15,12 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/modal";
+import { UserInfo } from "./user";
 
 const Navigation = () => {
   const pathname = usePathname();
   const { status, data } = useSession();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const link = [
     { name: "Career", href: "/career" },
     { name: "Universities", href: "/unis" },
@@ -168,15 +169,7 @@ const Navigation = () => {
             </ul>
 
             {status === "authenticated" ? (
-              <div className="flex justify-between items-center">
-                <p className="text-base mr-5">{data?.user?.name}</p>
-                <Avatar
-                  isBordered
-                  src={data?.user?.image}
-                  className="cursor-pointer"
-                  onClick={onOpen}
-                />
-              </div>
+              <UserInfo />
             ) : (
               <div className="flex justify-between items-center">
                 <a
