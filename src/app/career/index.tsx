@@ -1,6 +1,5 @@
 "use client";
 
-import { getAllCareer } from "@/lib/careerapi";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import NavigationIndex from "../navigation";

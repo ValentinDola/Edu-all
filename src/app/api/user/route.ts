@@ -6,9 +6,9 @@ export const POST = async (request: { json: () => PromiseLike<{ name: any; email
     const {email, name} = await request.json();
     await ConnectToDatabase();
     const user = { email, name };
-    await prisma.user.create({
+    const saved = await prisma.user.create({
         data: user
     })
-    console.log(user)
+    console.log(saved)
         return NextResponse.json({user}, {status: 201})
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import Cards from "./cards";
@@ -10,7 +8,7 @@ import Navigation from "@/app/navigation/navigation";
 
 export default function Dashboard({ params }: { params: { careerId: any } }) {
   return (
-    <>
+    <div>
       <Navigation />
       <section className="mt-7 mx-auto max-w-7xl py-7">
         <Tabs className="p-8 mx-4 mt-7 " aria-label="Options">
@@ -28,6 +26,6 @@ export default function Dashboard({ params }: { params: { careerId: any } }) {
           </Tab>
         </Tabs>
       </section>
-    </>
+    </div>
   );
 }
