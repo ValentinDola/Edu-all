@@ -16,7 +16,7 @@ export default function Hero() {
                   <blockquote className="text-[.9rem] text-[#6c82a3] leading-[1.35] tracking-[-0.2px] m-0 break-words">
                     The personalized career recommendations helped me focus on
                     what truly matters. I found a path that aligns with my
-                    passion, and now I'm pursuing my dream career. Thank you for
+                    passion, and now I&apos;m pursuing my dream career. Thank you for
                     guiding me
                   </blockquote>
                   <div className="flex justify-between font-medium text-[1.4rem] mt-6">
