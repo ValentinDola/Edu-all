@@ -5,81 +5,43 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useLinkedIn } from "react-linkedin-login-oauth2";
-// You can use provided image shipped by this package or using your own
-import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 
 interface IFormInput {
   email: string;
   password: string;
-  confirm: string;
 }
 
 // const linkedinOAuthURL = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${LINKEDIN_CLIENT_ID}&redirect_uri=${encodeURIComponent(
 //   LINKEDIN_CALLBACK_URL
 // )}&scope=r_liteprofile%20r_emailaddress`;
 
-export default function SignUp() {
+export default function LoginForm() {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
-  } = useForm<IFormInput>({
-    defaultValues: {
-      email: "dola@skiff.com",
-    },
-  });
+  } = useForm<IFormInput>();
+
+  const router = useRouter();
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    // const signUpResponse = await signIn('credentials', {
-    //   email: data.email,
-    //   password: data.password,
-    //   redirect: false
-    // })
-    // if(signUpResponse && )
+    const { email, password } = data;
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+      });
+      if (res?.error) {
+        console.log("Error");
+      } else {
+        router.replace("/update");
+      }
+    } catch (error) {
+      console.log("Error during registration", error);
+    }
   };
-
-  // const handleLogin = async (code: string) => {
-  //   // Exchange the code for an access token
-  //   const data = await fetch("https://www.linkedin.com/oauth/v2/accessToken", {
-  //     method: "POST",
-  //     body: new URLSearchParams({
-  //       grant_type: "authorization_code",
-  //       code,
-  //       redirect_uri: LINKEDIN_CALLBACK_URL,
-  //       client_id: LINKEDIN_CLIENT_ID,
-  //       client_secret: LINKEDIN_CLIENT_SECRET,
-  //     }),
-  //   }).then((response) => response.json());
-
-  //   const accessToken = data.access_token;
-
-  //   // Fetch the user's LinkedIn profile
-  //   const userProfile = await fetch(
-  //     "https://api.linkedin.com/v2/me?projection=(id,firstName,lastName)",
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     }
-  //   );
-
-  //   // Handle the user profile data (e.g., store it in your database and log the user in)
-  //   console.log(
-  //     `Welcome, ${userProfile.data.firstName.localized.en_US} ${userProfile.data.lastName.localized.en_US}!`
-  //   );
-  // };
-
-  // const handleLinkedInCallback = () => {
-  //   const queryString = window.location.search;
-  //   const urlParams = new URLSearchParams(queryString);
-  //   const code = urlParams.get("code");
-  //   if (code) handleLogin(code);
-  // };
-
-  // React.useEffect(() => {
-  //   handleLinkedInCallback();
-  // }, []);
 
   return (
     <section className="bg-[#f4f7fa]">
@@ -123,7 +85,7 @@ export default function SignUp() {
           </div>
           <div className="box-border w-full flex flex-initial flex-row flex-wrap">
             <div className="box-border basis-[58.3333333333%] max-w-[58.3333333333%] p-0">
-              <div className="bg-white min-h-[200px] relative overflow-hidden shadow-[1px_15px_18px_rgba(0,0,0,0.03)] pt-[60px] pb-[50px] px-[60px] rounded-xl">
+              <div className="bg-white min-h-[200px] relative overflow-hidden shadow-[1px_15px_18px_rgba(0,0,0,0.03)] pt-[40px] pb-[50px] px-[60px] rounded-xl transition-all">
                 <form action="" method="post" onSubmit={handleSubmit(onSubmit)}>
                   <div className="box-border w-full flex flex-initial flex-row flex-wrap">
                     <div className="box-border basis-full max-w-full pl-0 pr-4 py-0">
@@ -134,14 +96,30 @@ export default function SignUp() {
                       </div>
                     </div>
                     <div className="box-border w-full flex flex-initial flex-row flex-wrap items-center basis-full max-w-full p-5 mt-0">
-                      <div className="justify-start p-0 box-border basis-6/12 max-w-[50%] w-full flex flex-initial flex-row flex-wrap ">
-                        <Image
-                          src={linkedin}
-                          width={500}
-                          height={500}
-                          alt="Picture of the author"
-                          style={{ maxWidth: "180px", cursor: "pointer" }}
-                        />
+                      <div className="justify-start p-0 box-border max-w-full w-full flex flex-initial flex-row flex-wrap ">
+                        <div className="grid grid-cols-2 gap-5">
+                          <div className="ml-5">
+                            <Image
+                              src={"/link.jpg"}
+                              width={500}
+                              height={500}
+                              alt="Picture of the author"
+                              style={{ maxWidth: "180px", cursor: "pointer" }}
+                              onClick={() => signIn("linkedin")}
+                            />
+                          </div>
+
+                          <div className="ml-10">
+                            <Image
+                              src={"/google.jpg"}
+                              width={500}
+                              height={500}
+                              alt="Picture of the author"
+                              style={{ maxWidth: "180px", cursor: "pointer" }}
+                              onClick={() => signIn("google")}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="box-border basis-full max-w-full pl-0 pr-4 py-0">
@@ -152,7 +130,6 @@ export default function SignUp() {
                           placeholder="Email Address"
                           className="input"
                         />
-                        <span>{errors.email?.message}</span>
                       </div>
                       <div className="relative mb-[30px]">
                         <input
@@ -165,32 +142,19 @@ export default function SignUp() {
                           placeholder="Password"
                           className="input"
                         />
-                        <span className="text-[13px] text-green-600 mt-5 ml-2">
-                          Minimum eight characters, at least one letter and one
-                          number.
-                        </span>
-
-                        <span className="text-[13px] text-red-400 mt-5 ml-2">
-                          {errors.password?.message}
-                        </span>
-                      </div>
-                      <div className="relative mb-[30px]">
-                        <input
-                          type="password"
-                          {...register("confirm", {
-                            required: true,
-                            validate: (val: string) => {
-                              if (watch("password") != val) {
-                                return "your passwords do not match";
-                              }
-                            },
-                          })}
-                          placeholder="Confirm Password"
-                          className="input"
-                        />
-                        <span className="text-[13px] text-red-400 mt-5 ml-2">
-                          {errors.confirm?.message}
-                        </span>
+                        {errors.password?.message ? (
+                          <span className="text-[11px] text-red-400 mt-5 ml-2">
+                            {errors.password?.message}
+                          </span>
+                        ) : (
+                          <a
+                            href="/register"
+                            className="text-[#4f94f5] font-semibold mt-5 ml-2 text-[0.8rem] leading-[1.6] underline"
+                          >
+                            {" "}
+                            Forgot password?{" "}
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -198,19 +162,19 @@ export default function SignUp() {
                     <div className="box-border w-full flex flex-initial flex-row flex-wrap items-center basis-full max-w-full p-0 mt-0">
                       <div className="p-0 box-border basis-6/12 max-w-[50%]">
                         <span className="text-[rgba(10,46,101,.6)] text-[0.8rem] leading-[1.6]">
-                          Got an account?
+                          New user?
                           <a
-                            href="/login"
+                            href="/register"
                             className="text-[#4f94f5] font-semibold"
                           >
                             {" "}
-                            login{" "}
+                            Create account{" "}
                           </a>
                         </span>
                       </div>
                       <div className="justify-end p-0 box-border basis-6/12 max-w-[50%] w-full flex flex-initial flex-row flex-wrap ">
                         <button type="submit" className=" button_auth self-end">
-                          Continue
+                          Login
                         </button>
                       </div>
                     </div>

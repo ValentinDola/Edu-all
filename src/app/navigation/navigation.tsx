@@ -4,16 +4,29 @@ import React, { useState, Fragment, useEffect } from "react";
 import Link from "next/link";
 import classnames from "classnames";
 import { usePathname } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
+import { Avatar } from "@nextui-org/avatar";
+import { Button } from "@nextui-org/button";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/modal";
+import { UserInfo } from "./user";
 
-export default function Navigation() {
+const Navigation = () => {
   const pathname = usePathname();
+  const { status, data } = useSession();
 
   const link = [
-    { name: "Home", href: "/" },
+    { name: "Assessment", href: "/assessment" },
     { name: "Career", href: "/career" },
     { name: "Universities", href: "/unis" },
     { name: "Events", href: "/events" },
-    { name: "faq's", href: "/faq" },
+    { name: "FAQ'S", href: "/faq" },
   ];
 
   const [isNavigationSticky, setNavigationSticky] = useState(false);
@@ -155,22 +168,27 @@ export default function Navigation() {
                 </li>
               ))}
             </ul>
-            <div className="flex justify-between items-center">
-              <a
-                href="/login"
-                className={
-                  "mr-7 text-base bg-[none] text-[#0066f5] shadow-none p-0 font-semibold max-[980px]:hidden "
-                }
-              >
-                LOG IN{" "}
-              </a>
-              <a
-                href="/pages/auth/signup"
-                className={"button_auth max-[980px]:hidden"}
-              >
-                SIGN UP
-              </a>
-            </div>
+
+            {status === "authenticated" ? (
+              <UserInfo />
+            ) : (
+              <div className="flex justify-between items-center">
+                <a
+                  href="/login"
+                  className={
+                    "mr-7 text-base bg-[none] text-[#0066f5] shadow-none p-0 font-semibold max-[980px]:hidden "
+                  }
+                >
+                  LOG IN{" "}
+                </a>
+                <a
+                  href="/register"
+                  className={"button_auth max-[980px]:hidden"}
+                >
+                  SIGN UP
+                </a>
+              </div>
+            )}
           </div>
           <div className=" min-[980px]:hidden max-[980px]:block max-[980px]:opacity-100">
             <div
@@ -192,4 +210,6 @@ export default function Navigation() {
       </div>
     </nav>
   );
-}
+};
+
+export default Navigation;

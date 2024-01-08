@@ -88,8 +88,8 @@ input {
 /* Common styles for list items and paragraphs */
 li,
 p {
-  line-height: 1.7;
-  margin: 15px 0;
+  line-height: 1;
+  margin: 5px 0;
   font-weight: 400;
   font-size: 1.8rem;
   letter-spacing: -.2px;
@@ -911,13 +911,12 @@ button {
   transition: border-color .3s ease-in, color 1s linear;
   width: 100%;
   display: block;
-  height: 56px;
-  background-color: transparent;
+  height: 45px;
   border-radius: 4px;
   outline: none;
   color: #0a2e65;
   border: 1px solid rgba(10, 46, 101, .1);
-  font-size: .95rem;
+  font-size: .80rem;
   padding-bottom: 10px;
   padding-top: 10px;
   padding-left: 20px;
