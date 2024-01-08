@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import CareerComponent from ".";
+import UpdateForm from "@/components/update";
 
-const Career = async () => {
-  return <CareerComponent />;
+const Update = async () => {
+  return <UpdateForm />;
 };
 
-export default Career;
+export default Update;

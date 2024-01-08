@@ -3,62 +3,104 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import NavigationIndex from "../navigation";
-import { Card } from "@nextui-org/card";
-import { Skeleton } from "@nextui-org/skeleton";
+import { signOut, useSession } from "next-auth/react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { careers } from "@/components/data";
+import { useGlobalContext } from "../context/store";
+
+interface IFormInput {
+  name: string;
+  email: string;
+  skillFirst: string;
+  skillSecond: string;
+  interest: string;
+  degree: string;
+  school: string;
+  graduationYear: string;
+}
 
 export default function CareerComponent() {
+  const { setData } = useGlobalContext();
+  const { data } = useSession();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<IFormInput>();
+
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(true);
+  const [active, setActive] = useState(0);
+  const [categories, setCategories]: any = useState([]);
+
+  const handleCategoriesActivity = (index: any) => {
+    setActive(index);
+    const catego = careers[index]?.categories || null;
+    setCategories(careers[index]?.categories || null);
+    setData(catego);
+    console.log(careers[index]?.categories || null);
+  };
 
   useEffect(() => {
-    setInterval(() => {
-      setLoading(false);
-    }, 5000);
-  }, [loading]);
-  const careers = [
-    {
-      id: 19494909,
-      name: "IT technician",
-      description:
-        "An IT technician collaborates with support specialists to analyze and diagnose computer issues. They also monitor processing functions, install relevant software and perform tests on computer equipment and applications when necessary. They may also train a company's employees, clients and other users on a new program or function as well.",
-    },
-    {
-      id: 1900065,
-      name: " Web developer",
-      description:
-        "Web developers design the appearance, navigation and content organization of a website. They use coding languages such as HTML, CSS and JavaScript to manage graphics, applications and content that address a client's needs.",
-    },
-    {
-      id: 9967544,
-      name: "Computer programmer",
-      description:
-        "A computer programmer is someone who writes new computer software using coding languages like HTML, JavaScript and CSS. Video game software can be updated to improve online gameplay, which is an opportunity for programmers to troubleshoot problems experienced by gamers after the game is released to the general public.",
-    },
-    {
-      id: 109700000009,
-      name: "Network engineer",
-      description:
-        "An IT technician collaborates with support specialists to analyze and diagnose computer issues. They also monitor processing functions, install relevant software and perform tests on computer equipment and applications when necessary. They may also train a company's employees, clients and other users on a new program or function as well.",
-    },
-  ];
+    setCategories(careers[active]?.categories || null);
+  }, []);
 
   return (
     <>
       <NavigationIndex />
-      <section className="mt-[50px] ">
+
+      <section className="mt-[70px]">
         <main>
-          <div className="grid gap-4 max-w-[1380px] w-full mx-auto mt-9 px-5 py-0">
-            {careers.map((career) => (
-              <Link
-                key={career.id}
-                href={`/career/${career.id}`}
-                className="w-auto h-auto rounded-xl hover:bg-[#FEF6EE] transition"
-              >
-                <div className="p-6">
-                  <h1 className="text-[30px] underline">{career.name}</h1>
-                  <p className="text-sm">{career.description}</p>
-                </div>
-              </Link>
-            ))}
+          <div className="grid grid-cols-2 gap-0">
+            <div className=" overflow-y-auto overflow-x-hidden text-xs text-[#333] border-r-[#ddd] border-r border-solid ">
+              <ul>
+                {careers.map((item, i) => (
+                  <li
+                    key={i}
+                    className={
+                      active === i
+                        ? "bg-[#F1F2F2] w-full cursor-pointer"
+                        : "hover:bg-[#F1F2F2] w-full cursor-pointer"
+                    }
+                    onClick={() => handleCategoriesActivity(i)}
+                  >
+                    <div className=" -pt-6 px-3 pb-1 p">
+                      <span className="text-base">{item.name}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className=" overflow-y-auto overflow-x-hidden text-xs text-[#333] border-r-[#ddd] border-r border-solid ">
+              <ul className="mt-2">
+                {categories.map((item: any, i: any) => {
+                  const name = item.name
+                    .toLowerCase()
+                    .replace(/\s+/g, "-") // Replace spaces with hyphens
+                    .replace(/[^a-z0-9-]/g, ""); // Remove special characters
+
+                  const maskedId = btoa(i);
+                  return (
+                    <div
+                      className="hover:bg-[#F1F2F2] w-full cursor-pointer"
+                      key={i}
+                    >
+                      <Link
+                        href={`/career/${i}`}
+                        className="w-full justify-center items-center cursor-pointer "
+                      >
+                        <div className="-pt-4 px-3 pb-0.5">
+                          <span className="text-base ">{item.name}</span>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </main>
       </section>

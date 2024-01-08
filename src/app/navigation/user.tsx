@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar } from "@nextui-org/avatar";
 import { signOut, useSession } from "next-auth/react";
 import {
@@ -29,8 +31,8 @@ export const UserInfo = () => {
         <DropdownItem key="profile">Profile</DropdownItem>
 
         <DropdownItem
-          key="logout"
-          className="text-danger text-xl"
+          key="delete"
+          className="text-danger"
           color="danger"
           onClick={() => signOut}
         >

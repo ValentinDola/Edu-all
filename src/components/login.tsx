@@ -1,15 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
-import google from "./public/google.jpg";
-import link from "./public/link.jpg";
-import { useLinkedIn } from "react-linkedin-login-oauth2";
-// You can use provided image shipped by this package or using your own
-import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 
 interface IFormInput {
   email: string;
@@ -28,8 +23,9 @@ export default function LoginForm() {
     reset,
     formState: { errors },
   } = useForm<IFormInput>();
-  const [error, setError]: any = useState(null);
+
   const router = useRouter();
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     const { email, password } = data;
     try {
@@ -38,10 +34,9 @@ export default function LoginForm() {
         password,
       });
       if (res?.error) {
-        setError("We have issues. Check your credentials");
-        return;
+        console.log("Error");
       } else {
-        router.replace("/career");
+        router.replace("/update");
       }
     } catch (error) {
       console.log("Error during registration", error);
@@ -98,27 +93,6 @@ export default function LoginForm() {
                         <h3 className="font-semibold tracking-[-3.9px] leading-[1.2] text-[3rem] mt-0">
                           Dream.Discover.Decide.
                         </h3>
-                        {error !== null ? (
-                          <div
-                            className="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                            role="alert"
-                          >
-                            <svg
-                              className="flex-shrink-0 inline w-4 h-4 me-3"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                            </svg>
-                            <span className="sr-only">Info</span>
-                            <div>
-                              <span className="font-medium">Danger alert!</span>{" "}
-                              Change a few things up and try submitting again.
-                            </div>
-                          </div>
-                        ) : null}
                       </div>
                     </div>
                     <div className="box-border w-full flex flex-initial flex-row flex-wrap items-center basis-full max-w-full p-5 mt-0">

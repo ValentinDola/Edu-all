@@ -1,52 +1,79 @@
-"use client";
-
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { cookies } from "next/headers";
+import React, { Suspense } from "react";
 import NavigationIndex from "../navigation";
-import { Card } from "@nextui-org/card";
-import { Skeleton } from "@nextui-org/skeleton";
+import { Image } from "@nextui-org/image";
 
-export default function UnisComponent() {
-  const [loading, setLoading] = useState(true);
+type DataType = {
+  map(arg0: (item: any, i: any) => React.JSX.Element): React.ReactNode;
+  name: String;
+  nickname: String;
+  location: String;
+  logo: String;
+  icon: String;
+  website: String;
+  type: String;
+};
 
-  useEffect(() => {
-    setInterval(() => {
-      setLoading(false);
-    }, 5000);
-  }, [loading]);
-  const careers = [
-    {
-      id: 19494909,
-      name: "IT technician",
-      description:
-        "An IT technician collaborates with support specialists to analyze and diagnose computer issues. They also monitor processing functions, install relevant software and perform tests on computer equipment and applications when necessary. They may also train a company's employees, clients and other users on a new program or function as well.",
-    },
-    {
-      id: 1900065,
-      name: " Web developer",
-      description:
-        "Web developers design the appearance, navigation and content organization of a website. They use coding languages such as HTML, CSS and JavaScript to manage graphics, applications and content that address a client's needs.",
-    },
-    {
-      id: 9967544,
-      name: "Computer programmer",
-      description:
-        "A computer programmer is someone who writes new computer software using coding languages like HTML, JavaScript and CSS. Video game software can be updated to improve online gameplay, which is an opportunity for programmers to troubleshoot problems experienced by gamers after the game is released to the general public.",
-    },
-    {
-      id: 109700000009,
-      name: "Network engineer",
-      description:
-        "An IT technician collaborates with support specialists to analyze and diagnose computer issues. They also monitor processing functions, install relevant software and perform tests on computer equipment and applications when necessary. They may also train a company's employees, clients and other users on a new program or function as well.",
-    },
-  ];
+export default async function UnisComponent() {
+  const url = "https://list-of-universities-in-ghana.onrender.com/universities";
+  const options = {
+    method: "GET",
+  };
+  const response = await fetch(url, options);
+  const result = await response.json();
+  const data: DataType = await result.universities;
 
   return (
     <>
       <NavigationIndex />
       <section className="mt-[50px] ">
         <main>
-          <div className="grid gap-4 max-w-[1380px] w-full mx-auto mt-9 px-5 py-0"></div>
+          <Suspense fallback={<p>Loading feed...</p>}>
+            <div className="grid grid-cols-3 gap-4 max-w-[1380px] w-full mx-auto mt-9 px-7 py-0">
+              {data.map((item, i) => (
+                <a
+                  key={i}
+                  target="_blank"
+                  href={item.website}
+                  className="w-auto h-auto bg-[#F1F2F2] rounded-xl transition"
+                >
+                  <div className="p-6">
+                    <div className="p-5">
+                      {item.logo !== "" ? (
+                        <Image src={item.icon} width={60} height={60} />
+                      ) : (
+                        <p className="text-base">No Logo </p>
+                      )}
+                    </div>
+                    <h3 className="text-[20px]">{item.name}</h3>
+                    <p className="text-base">Nickname - {item.nickname}</p>
+                    <p className="text-base">Location - {item.location}</p>
+                    <p className="text-base">Type - {item.type}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </Suspense>
+
+          {/* <div className="grid grid-cols-3 gap-4 max-w-[1380px] w-full mx-auto mt-9 px-5 py-0">
+            {data.map((item, i) => (
+              <Card className="py-4" key={i}>
+                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                  <p className="text-tiny uppercase font-bold">{item?.name}</p>
+                  <small className="text-default-500">12 Tracks</small>
+                  <h4 className="font-bold text-large">{item?.type}</h4>
+                </CardHeader>
+                <CardBody className="overflow-visible py-2">
+                  <Image
+                    alt="Card background"
+                    className="object-cover rounded-xl"
+                    src="/images/hero-card-complete.jpeg"
+                    width={270}
+                  />
+                </CardBody>
+              </Card>
+            ))}
+          </div> */}
         </main>
       </section>
     </>

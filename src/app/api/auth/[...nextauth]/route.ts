@@ -50,7 +50,7 @@ export const authOptions: NextAuthOptions = {
             console.log(account)
             if (account?.provider === "google") {
 
-                const { email, name } = user;
+                const { email} = user;
 
                 await ConnectToDatabase();
 
@@ -60,14 +60,14 @@ export const authOptions: NextAuthOptions = {
                     }
                 })
 
-                if (userExist)
+                
                     try {
-                        const { email, name } = user;
+                        const { email, name, id } = user;
                         const res = await fetch("http://localhost:3000/api/user", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
-                                email, name
+                                email, name, id
                             }),
                         });
 
@@ -83,7 +83,7 @@ export const authOptions: NextAuthOptions = {
 
             if (account?.provider === "linkedin") {
 
-                const { email, name } = user;
+                const { email } = user;
 
                 await ConnectToDatabase();
 
@@ -93,14 +93,14 @@ export const authOptions: NextAuthOptions = {
                     }
                 })
 
-                if (userExist)
+                
                     try {
-                        const { email, name } = user;
+                        const { email, name, id } = user;
                         const res = await fetch("http://localhost:3000/api/user", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
-                                email, name
+                                email, name, id
                             }),
                         });
 

@@ -1,20 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { useLinkedIn } from "react-linkedin-login-oauth2";
 // You can use provided image shipped by this package or using your own
 import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 
-interface IFormInput {
-  name: string;
-  email: string;
-  password: string;
-  confirm: string;
-}
+const registerSchema = z.object({
+  email: z.string(),
+  name: z.string(),
+  password: z.string(),
+  confirm: z.string(),
+});
 
 // const linkedinOAuthURL = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${LINKEDIN_CLIENT_ID}&redirect_uri=${encodeURIComponent(
 //   LINKEDIN_CALLBACK_URL
@@ -27,19 +29,13 @@ export default function RegisterForm() {
     watch,
     reset,
     formState: { errors },
-  } = useForm<IFormInput>();
-  const [error, setError]: any = useState(null);
-  const router = useRouter();
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    try {
-      const userExitRes = await fetch("api/userexit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data.email),
-      });
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+  });
 
-      const { user } = await userExitRes.json();
-      if (user) setError("email already exit");
+  const router = useRouter();
+  const onSubmit = async (data: any) => {
+    try {
       const res = await fetch("api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,11 +44,10 @@ export default function RegisterForm() {
 
       if (res.ok) {
         reset();
-        setError(null);
+
         router.push("/login");
         console.log(res);
       } else {
-        setError("We have issues. Check your credentials");
       }
     } catch (error) {
       console.log("Error during registration", error);
@@ -109,27 +104,6 @@ export default function RegisterForm() {
                         <h3 className="font-semibold tracking-[-3.9px] leading-[1.2] text-[3rem] mt-0">
                           Dream.Discover.Decide.
                         </h3>
-                        {error !== null ? (
-                          <div
-                            className="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                            role="alert"
-                          >
-                            <svg
-                              className="flex-shrink-0 inline w-4 h-4 me-3"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                            </svg>
-                            <span className="sr-only">Info</span>
-                            <div>
-                              <span className="font-medium">Danger alert!</span>{" "}
-                              Change a few things up and try submitting again.
-                            </div>
-                          </div>
-                        ) : null}
                       </div>
                     </div>
                     <div className="box-border w-full flex flex-initial flex-row flex-wrap items-center basis-full max-w-full p-5 mt-0">
@@ -167,7 +141,6 @@ export default function RegisterForm() {
                           placeholder="Full Name"
                           className="input"
                         />
-                        <span>{errors.name?.message}</span>
                       </div>
                       <div className="relative mb-[30px]">
                         <input
@@ -191,10 +164,6 @@ export default function RegisterForm() {
                         <span className="text-[11px] text-green-600 mt-5 ml-2">
                           8 characters, at least one letter and one number.
                         </span>
-
-                        <span className="text-[11px] text-red-400 mt-5 ml-2">
-                          {errors.password?.message}
-                        </span>
                       </div>
                       <div className="relative mb-[30px]">
                         <input
@@ -210,9 +179,6 @@ export default function RegisterForm() {
                           placeholder="Confirm Password"
                           className="input"
                         />
-                        <span className="text-[13px] text-red-400 mt-5 ml-2">
-                          {errors.confirm?.message}
-                        </span>
                       </div>
                     </div>
                   </div>

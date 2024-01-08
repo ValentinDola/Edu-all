@@ -1,53 +1,44 @@
+import { useGlobalContext } from "@/app/context/store";
 import { Progress } from "@nextui-org/progress";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Finance = () => {
+const Finance = (props: any) => {
+  const { data } = useGlobalContext();
+  const { id } = props;
+
+  const [major, setMajor]: any = useState([]);
+
+  useEffect(() => {
+    setMajor(data);
+  }, [major]);
+
   return (
     <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-3 gap-5 max-w-[1380px] w-full mx-auto my-0 px-5 py-0">
-        <a>
-          <div className="p-6">
-            <h1 className="text-[25px]">About Me</h1>
-
-            <p className="text-sm">
-              Undergraduate | Communication | Problem solving | IT Consultant
-            </p>
+      <div className="max-w-[1380px] w-full mx-auto my-0 px-5 py-0">
+        <div className="border-solid border-2 border-[#00aeef] mt-4 w-1/3">
+          <div className="bg-[#00aeef] border-[#00aeef]  px-[15px] py-2.5 rounded-t-[3px] border-b-transparent border-b border-solid">
+            <h1 className="text-white font-semibold">{`Salary Info`}</h1>
           </div>
-        </a>
-        <div>
-          <div className="p-6">
-            <h1 className="text-[25px]">My choice</h1>
-            <p className="text-sm">IT technician</p>
-          </div>
-        </div>
-        <div>
-          <div className="p-6">
-            <h1 className="text-[25px]">Courses progress</h1>
-
-            <p className="text-sm">
-              {" "}
-              <Progress
-                aria-label="Downloading..."
-                size="sm"
-                value={50}
-                color="success"
-                showValueLabel={true}
-                label={"Consulting"}
-                className="max-w-md"
-              />
-            </p>
-            <p className="text-sm">
-              <Progress
-                aria-label="Downloading..."
-                size="sm"
-                value={50}
-                color="success"
-                showValueLabel={true}
-                label={"Networking"}
-                className="max-w-md"
-              />
-            </p>
-          </div>
+          {major[id]?.Salaries !== null ? (
+            <div className="p-5">
+              <p className="text-sm ">
+                Median Annual Wage : <strong>{major[id]?.salaries?.MAW}</strong>{" "}
+              </p>
+              <p className="text-sm ">
+                Median Hourly Wage : <strong>{major[id]?.salaries?.MHW}</strong>{" "}
+              </p>
+              <p className="text-sm ">
+                Total Employed Nationally :{" "}
+                <strong>{major[id]?.salaries?.TEN}</strong>{" "}
+              </p>
+            </div>
+          ) : (
+            <div className="p-5">
+              <p className="text-sm ">
+                We do not have a salary list for this major
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </main>

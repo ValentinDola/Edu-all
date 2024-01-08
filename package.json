@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.3",
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.7.1",
     "@reduxjs/toolkit": "^2.0.1",
@@ -24,7 +25,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.2",
-    "react-linkedin-login-oauth2": "^2.0.1"
+    "react-linkedin-login-oauth2": "^2.0.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/alpinejs": "^3.13.5",

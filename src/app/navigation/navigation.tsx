@@ -22,10 +22,11 @@ const Navigation = () => {
   const { status, data } = useSession();
 
   const link = [
+    { name: "Assessment", href: "/assessment" },
     { name: "Career", href: "/career" },
     { name: "Universities", href: "/unis" },
     { name: "Events", href: "/events" },
-    { name: "faq's", href: "/faq" },
+    { name: "FAQ'S", href: "/faq" },
   ];
 
   const [isNavigationSticky, setNavigationSticky] = useState(false);
