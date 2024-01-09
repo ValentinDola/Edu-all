@@ -27,8 +27,7 @@ export const authOptions: NextAuthOptions = {
         CredentialsProvider({
             name: 'credentials',
             credentials: {},
-              /* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/
-            // @ts-ignore
+             
             async authorize(credentials) {
                 
                 if (!credentials) {
@@ -42,8 +41,7 @@ export const authOptions: NextAuthOptions = {
                     const user = await prisma.user.findUnique({
                         where: { email: email }
                     });
-                    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/
-                    // @ts-ignore
+                    
                     if (user && bcrypt.compare(password, user.password )) {
                         return user as any;
                         
