@@ -7,6 +7,16 @@ import { ConnectToDatabase } from "@/lib/db";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcrypt";
 
+type User = {
+  id: string; name: string; email: string; password: string | null; createdAt: Date;
+};
+
+// Assuming you have a Credentials type for the input
+type Credentials = {
+  email: string;
+  password: string;
+};
+
 export const authOptions: NextAuthOptions = {
     pages: {
         signIn: '/login'
@@ -17,23 +27,29 @@ export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
             name: 'credentials',
-            
+            async authorize(credentials: Credentials | undefined): Promise<User | null> {
+                
+                if (!credentials) {
+                    return null; // Handle the case where credentials are undefined
+                }
 
-            async authorize(credentials: any) {
                 const { email, password }: any = credentials;
+                
                 try {
                     await ConnectToDatabase();
                     const user = await prisma.user.findUnique({
                         where: { email: email }
                     });
-                    if (user && bcrypt.compare(password, user?.password )) {
+                    if (user && bcrypt.compare(password, user.password )) {
                         return user;
                         
                     } 
                     console.log(user);
+                    return null;
 
                 } catch (error) {
                     console.log('Error', error);
+                    throw error;
                 }
             },
         }),
@@ -122,4 +138,8 @@ export const authOptions: NextAuthOptions = {
 
     secret: process.env.NEXT_AUTH_SECRET
 
+}
+
+function authorize(credentials: any, arg1: number) {
+    throw new Error("Function not implemented.");
 }
