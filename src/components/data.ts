@@ -1,3 +1,29 @@
+
+
+type Dos = string[];
+type Education = string[];
+type Skills = string[];
+type Salaries = {
+  MAW: string;
+  MHW: string;
+  TEN: string;
+};
+type Schools = /* type for schools data */ any; // Please replace this with the actual type
+
+interface CareerCategory {
+  name: string;
+  categories?: CareerCategory[];
+  description?: string;
+  dos?: Dos;
+  education?: Education;
+  skills?: Skills;
+  salaries?: Salaries;
+  schools?: Schools;
+  skillsArray?: Skills;
+}
+
+
+
 export const Unis = [
   {
     name: "Accra Technical University",
@@ -361,7 +387,7 @@ export const Unis = [
   },
 ];
 
-export const careers = [
+export const careers : CareerCategory[] = [
   {
     name: "Architecture and Engineering Occupations",
     categories: [

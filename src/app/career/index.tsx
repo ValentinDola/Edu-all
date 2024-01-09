@@ -7,18 +7,39 @@ import { careers } from "@/components/data";
 import { useGlobalContext } from "../context/store";
 import { Spinner } from "@nextui-org/react";
 
+type Dos = string[];
+type Education = string[];
+type Skills = string[];
+type Salaries = {
+  MAW: string;
+  MHW: string;
+  TEN: string;
+};
+type Schools = /* type for schools data */ any; // Please replace this with the actual type
+
+interface CareerCategory {
+  name: string;
+  categories?: CareerCategory[];
+  description?: string;
+  dos?: Dos;
+  education?: Education;
+  skills?: Skills;
+  salaries?: Salaries;
+  schools?: Schools;
+  skillsArray?: Skills;
+}
+
 export default function CareerComponent() {
   const { setData } = useGlobalContext();
 
   const [loading, setLoading] = useState(true);
   const [active, setActive] = useState(0);
-  const [categories, setCategories]: any = useState([]);
+  const [categories, setCategories] = useState<CareerCategory[] | null>(null);
 
   const handleCategoriesActivity = (index: any) => {
     setActive(index);
-    const catego = careers[index]?.categories || null;
     setCategories(careers[index]?.categories || null);
-    setData(catego);
+    setData(careers[index]?.categories || null);
   };
 
   useEffect(() => {

@@ -8,51 +8,73 @@ import {
   useState,
 } from "react";
 
-type DataType = {
-  categories(
-    arg0: (item: any, i: any) => import("react").JSX.Element
-  ): import("react").ReactNode;
-  name: String;
-  description: String;
-  dos: dos[];
-  education: education[];
-  skills: skills[];
-  salaries: Salary;
-  schools: unis;
-  skillsArray: skills[];
-};
+// export type DataType = {
+//   categories(
+//     arg0: (item: any, i: any) => import("react").JSX.Element
+//   ): import("react").ReactNode;
+//   name: String;
+//   description: String;
+//   dos: dos[];
+//   education: education[];
+//   skills: skills[];
+//   salaries: Salary;
+//   schools: unis;
+//   skillsArray: skills[];
+// };
 
-type dos = String;
-type education = String;
-type skills = String;
-type Salary = {
-  MAW: String;
-  MHW: String;
-  TEN: String;
-};
-type unis = {
-  name: String;
-  nickname: String;
-  founded: number;
-  location: String;
-  logo: String;
-  icon: String;
-  website: String;
-  type: String;
-};
+// type dos = String;
+// type education = String;
+// type skills = String;
+// type Salary = {
+//   MAW: String;
+//   MHW: String;
+//   TEN: String;
+// };
+// type unis = {
+//   name: String;
+//   nickname: String;
+//   founded: number;
+//   location: String;
+//   logo: String;
+//   icon: String;
+//   website: String;
+//   type: String;
+// };
 
-type UnisType = {
-  map(arg0: (item: any, i: any) => React.JSX.Element): React.ReactNode;
-  name: String;
-  nickname: String;
-  location: String;
-  logo: String;
-  icon: String;
-  website: String;
-  type: String;
-};
+// type UnisType = {
+//   map(arg0: (item: any, i: any) => React.JSX.Element): React.ReactNode;
+//   name: String;
+//   nickname: String;
+//   location: String;
+//   logo: String;
+//   icon: String;
+//   website: String;
+//   type: String;
+// };
 
-type AssDataType = {
+type Dos = string[];
+type Education = string[];
+type Skills = string[];
+type Salaries = {
+  MAW: string;
+  MHW: string;
+  TEN: string;
+};
+type Schools = /* type for schools data */ any; // Please replace this with the actual type
+
+interface CareerCategory {
+  name: string;
+  categories?: CareerCategory[];
+  description?: string;
+  dos?: Dos;
+  education?: Education;
+  skills?: Skills;
+  salaries?: Salaries;
+  schools?: Schools;
+  skillsArray?: Skills;
+}
+
+export type AssDataType = {
   firstName: String;
   lastName: String;
   monthOf: String;
@@ -69,21 +91,21 @@ type AssDataType = {
 };
 
 interface ContextProps {
-  data: DataType[];
-  setData: Dispatch<SetStateAction<DataType[]>>;
+  data: CareerCategory[];
+  setData: Dispatch<SetStateAction<CareerCategory[]>>;
   assData: AssDataType[];
-  setAssData: Dispatch<SetStateAction<AssDataType>>;
+  setAssData: Dispatch<SetStateAction<AssDataType[]>>;
 }
 
 const GlobalContext = createContext<ContextProps>({
-  data: [] as DataType[],
-  setData: (): DataType[] => [],
+  data: [] as CareerCategory[],
+  setData: (): CareerCategory[] => [],
   assData: [] as AssDataType[],
   setAssData: (): AssDataType[] => [],
 });
 
 export const GlobalContextProvider = ({ children }) => {
-  const [data, setData] = useState<[] | DataType[]>([]);
+  const [data, setData] = useState<[] | CareerCategory[]>([]);
   const [assData, setAssData] = useState<[] | AssDataType[]>([]);
   return (
     <GlobalContext.Provider value={{ data, setData, assData, setAssData }}>
