@@ -104,7 +104,7 @@ const GlobalContext = createContext<ContextProps>({
   setAssData: (): AssDataType[] => [],
 });
 
-export const GlobalContextProvider = ({ children }) => {
+export const GlobalContextProvider = ({ children }: any) => {
   const [data, setData] = useState<[] | CareerCategory[]>([]);
   const [assData, setAssData] = useState<[] | AssDataType[]>([]);
   return (

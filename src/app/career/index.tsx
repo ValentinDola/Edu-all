@@ -38,12 +38,14 @@ export default function CareerComponent() {
 
   const handleCategoriesActivity = (index: any) => {
     setActive(index);
-    setCategories(careers[index]?.categories || null);
-    setData(careers[index]?.categories || null);
+    const cat: any = careers[index]?.categories || null;
+    setCategories(cat);
+    setData(cat);
   };
 
   useEffect(() => {
-    setData(careers[active]?.categories || null);
+    const cat: any = careers[active]?.categories || null;
+    setData(cat);
     setTimeout(() => {
       setLoading(false);
     }, 5000);
@@ -83,7 +85,7 @@ export default function CareerComponent() {
 
               <div className=" overflow-y-auto overflow-x-hidden text-xs text-[#333] border-r-[#ddd] border-r border-solid ">
                 <ul className="mt-2">
-                  {categories.map((item: any, i: any) => {
+                  {categories?.map((item: any, i: any) => {
                     const name = item.name
                       .toLowerCase()
                       .replace(/\s+/g, "-") // Replace spaces with hyphens

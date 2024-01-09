@@ -139,7 +139,7 @@ export default function Component() {
   const [career, setCareer] = React.useState<string>("");
 
   const onSubmit = () => {
-    const data: AssDataType = {
+    const data: any = {
       firstName,
       lastName,
       monthOf,
