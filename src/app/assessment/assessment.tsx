@@ -2,20 +2,10 @@
 
 import React, { useState } from "react";
 import NavigationIndex from "../navigation";
-import {
-  Input,
-  Select,
-  SelectSection,
-  SelectItem,
-  Checkbox,
-  Radio,
-  RadioGroup,
-  Spinner,
-  CheckboxGroup,
-} from "@nextui-org/react";
+import { Input, Radio, RadioGroup, Spinner } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
-import { date } from "zod";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useGlobalContext } from "../context/store";
+import { useRouter } from "next/navigation";
 
 const month = [
   { label: "January", value: "January" },
@@ -88,29 +78,6 @@ const collegeSkills = [
   { label: "Adaptability", value: "Adaptability" },
   { label: "Research Skills", value: "Research Skills" },
   { label: "Writing and Editing", value: "Writing and Editing" },
-  { label: "Active Listening", value: "Active Listening" },
-  { label: "Note-Taking", value: "Note-Taking" },
-  { label: "Collaboration", value: "Collaboration" },
-  { label: "Leadership", value: "Leadership" },
-  { label: "Self-Motivation", value: "Self-Motivation" },
-  { label: "Study Skills", value: "Study Skills" },
-  { label: "Digital Literacy", value: "Digital Literacy" },
-  { label: "Presentation Skills", value: "Presentation Skills" },
-  { label: "Resilience", value: "Resilience" },
-  { label: "Decision Making", value: "Decision Making" },
-  { label: "Networking", value: "Networking" },
-  { label: "Cultural Competence", value: "Cultural Competence" },
-  { label: "Financial Literacy", value: "Financial Literacy" },
-  { label: "Teamwork", value: "Teamwork" },
-  { label: "Conflict Resolution", value: "Conflict Resolution" },
-  { label: "Goal Setting", value: "Goal Setting" },
-  { label: "Creativity", value: "Creativity" },
-  { label: "Public Speaking", value: "Public Speaking" },
-  { label: "Emotional Intelligence", value: "Emotional Intelligence" },
-  { label: "Career Planning", value: "Career Planning" },
-  { label: "Self-Advocacy", value: "Self-Advocacy" },
-  { label: "Ethical Decision Making", value: "Ethical Decision Making" },
-  { label: "Interpersonal Skills", value: "Interpersonal Skills" },
 ];
 
 const currentlyAttending = [
@@ -126,73 +93,34 @@ const typeUnis = [
 ];
 
 const interestingCareers = [
-  "Astronaut",
   "Data Scientist",
   "Graphic Designer",
-  "Environmental Engineer",
-  "Digital Marketing Specialist",
-  "Human Rights Advocate",
   "Game Developer",
   "Robotics Engineer",
   "Cryptocurrency Analyst",
-  "Sustainable Energy Consultant",
-  "Neuroscientist",
-  "Medical Illustrator",
-  "Wildlife Biologist",
   "Virtual Reality Developer",
-  "Ethical Hacker",
-  "Astrophysicist",
-  "Forensic Psychologist",
-  "Cinematographer",
-  "Fashion Stylist",
-  "Ethical Fashion Designer",
-  "Ethnobotanist",
-  "Space Archaeologist",
-  "Food Scientist",
-  "Professional Travel Blogger",
+  "Buisiness",
   "User Experience (UX) Designer",
-  "Genetic Counselor",
-  "Zookeeper",
-  "Marine Biologist",
-  "Sports Psychologist",
-  "Crisis Counselor",
-  "Commercial Pilot",
-  "Music Therapist",
-  "Robotics Technician",
-  "Ethical Sourcing Manager",
-  "Blockchain Developer",
-  "Meteorologist",
-  "Social Media Manager",
-  "Space Tourism Guide",
-  "Renewable Energy Consultant",
-  "Biomedical Engineer",
-  "Biotechnology Researcher",
-  "Futurist",
-  "Voice Actor",
-  "Drones Operator",
-  "Creative Director",
-  "Museum Curator",
-  "Health Informatics Specialist",
-  "Professional Cuddler (Therapeutic)",
-  "Climate Change Analyst",
 ];
 
 export default function Component() {
-  const { data } = useSession();
+  const router = useRouter();
+  const { setAssData } = useGlobalContext();
+
   const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [monthOf, setMonth] = useState("");
-  const [date, setDate] = useState("");
-  const [year, setYear] = useState("");
-  const [ethnicOf, setEthnic] = useState("");
+  const [monthOf, setMonth] = React.useState<string>("");
+  const [date, setDate] = React.useState<string>("");
+  const [year, setYear] = React.useState<string>("");
+  const [ethnicOf, setEthnic] = React.useState<string>("");
   const [gender, setGender] = useState("Male");
-  const [graduation, setGraduation] = useState("");
-  const [currently, setCurrently] = useState("");
-  const [region, setRegion] = useState("");
-  const [type, setType] = useState("");
-  const [skill, setSkill] = useState("");
-  const [career, setCareer] = useState("");
+  const [graduation, setGraduation] = React.useState<string>("");
+  const [currently, setCurrently] = React.useState<string>("");
+  const [region, setRegion] = React.useState<string>("");
+  const [type, setType] = React.useState<string>("");
+  const [skill, setSkill] = React.useState<string>("");
+  const [career, setCareer] = React.useState<string>("");
 
   const onSubmit = () => {
     const data = {
@@ -210,7 +138,20 @@ export default function Component() {
       skill,
       career,
     };
-    console.log("DATA : ", data);
+    try {
+      if (skill || career !== "") {
+        setLoading(true);
+        setTimeout(() => {
+          console.log("DATA : ", data);
+          setAssData(data);
+          router.replace("/result");
+        }, 4000);
+      } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -258,81 +199,78 @@ export default function Component() {
                         className="max-w-md"
                       />
                     </div>
-                    <div className="p-2 mt-4 grid grid-cols-3 gap-1">
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="Select month"
-                        radius="none"
-                        className="max-w-xs"
-                        onChange={(e) => setMonth(e.target.value)}
-                      >
-                        {month.map((item: any, i: number) => (
-                          <SelectItem
-                            key={i}
-                            value={item.value}
-                            textValue={item.label}
-                          >
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </Select>
-                      <Select
-                        isRequired
-                        size="sm"
-                        radius="none"
-                        label="date"
-                        className="max-w-xs"
-                        onChange={(e) => setDate(e.target.value)}
-                      >
-                        {daysOfMonth.map((item, i) => {
-                          return (
-                            <SelectItem
-                              key={i}
-                              value={item}
-                              textValue={item.toString()}
-                            >
-                              {item}
-                            </SelectItem>
-                          );
-                        })}
-                      </Select>
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="year"
-                        radius="none"
-                        className="max-w-xs"
-                        onChange={(e) => setYear(e.target.value)}
-                      >
-                        {years.map((item, i) => {
-                          return (
-                            <SelectItem
-                              key={i}
-                              value={item}
-                              textValue={item.toString()}
-                            >
-                              {item}
-                            </SelectItem>
-                          );
-                        })}
-                      </Select>
+                    <div className="mt-4 p-2">
+                      <div className="p-1">Date Of Birth</div>
+                      <div className="p-2 grid grid-cols-3 gap-1">
+                        <select
+                          required
+                          value={monthOf}
+                          onChange={(e) => setMonth(e.target.value)}
+                          className="py-2 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        >
+                          {month.map((item, i) => (
+                            <option key={i} value={item.value}>
+                              {item.label}
+                            </option>
+                          ))}
+                        </select>
+
+                        <select
+                          required
+                          className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                          value={date}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLSelectElement>
+                          ) => {
+                            setDate(e.target.value);
+                          }}
+                        >
+                          {daysOfMonth.map((item, i) => {
+                            return (
+                              <option key={i} value={item}>
+                                {item}
+                              </option>
+                            );
+                          })}
+                        </select>
+
+                        <select
+                          required
+                          className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                          value={year}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLSelectElement>
+                          ) => {
+                            setYear(e.target.value);
+                          }}
+                        >
+                          {years.map((item, i) => {
+                            return (
+                              <option key={i} value={item}>
+                                {item}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
                     </div>
+
                     <div className="p-2 mt-4">
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="Ethnic Background"
-                        radius="none"
-                        className="max-w-md"
-                        onChange={(e) => setEthnic(e.target.value)}
+                      <div className="p-2">Ethnic Background</div>
+                      <select
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={ethnicOf}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setEthnic(e.target.value);
+                        }}
                       >
                         {ethnic.map((item, i) => (
-                          <SelectItem key={i} value={item.value}>
+                          <option key={i} value={item.value}>
                             {item.label}
-                          </SelectItem>
+                          </option>
                         ))}
-                      </Select>
+                      </select>
                     </div>
                     <div className="p-4">
                       <RadioGroup
@@ -353,45 +291,39 @@ export default function Component() {
                   <h1 className="font-bold text-2xl ">School Info</h1>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="p-2 mt-4 ml-5">
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="High School Grad-Year"
-                        radius="none"
-                        className="max-w-lg"
-                        onChange={(e) => setGraduation(e.target.value)}
+                      <div className="p-2">High School Grad-Year</div>
+                      <select
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={graduation}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setGraduation(e.target.value);
+                        }}
                       >
                         {graduationYears.map((item, i) => (
-                          <SelectItem
-                            key={i}
-                            value={item}
-                            textValue={item.toString()}
-                          >
+                          <option key={i} value={item}>
                             {item}
-                          </SelectItem>
+                          </option>
                         ))}
-                      </Select>
+                      </select>
                     </div>
 
                     <div className="p-2 mt-4 ml-5">
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="Currently Attending"
-                        radius="none"
-                        className="max-w-lg"
-                        onChange={(e) => setCurrently(e.target.value)}
+                      <div className="p-2">Currently Attending</div>
+                      <select
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={currently}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setCurrently(e.target.value);
+                        }}
                       >
                         {currentlyAttending.map((item, i) => (
-                          <SelectItem
-                            key={i}
-                            value={item.value}
-                            textValue={item.toString()}
-                          >
+                          <option key={i} value={item.value}>
                             {item.label}
-                          </SelectItem>
+                          </option>
                         ))}
-                      </Select>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -402,68 +334,72 @@ export default function Component() {
                   </h1>
                   <div className="grid grid-cols-2 gap-2 mt-4">
                     <div className="p-2 mt-4 ml-5">
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="What region in which you would consider attending school?"
-                        radius="none"
-                        className="max-w-lg"
-                        onChange={(e) => setRegion(e.target.value)}
+                      <div className="p-2">Choose your region to school</div>
+                      <select
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={region}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setRegion(e.target.value);
+                        }}
                       >
                         {ghanaRegions.map((item, i) => (
-                          <SelectItem key={i} value={item.value}>
+                          <option key={i} value={item.value}>
                             {item.label}
-                          </SelectItem>
+                          </option>
                         ))}
-                      </Select>
+                      </select>
                     </div>
                     <div className="p-2 mt-4 ml-5">
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="What region in which you would consider attending school?"
-                        radius="none"
-                        className="max-w-lg"
-                        onChange={(e) => setType(e.target.value)}
+                      <div className="p-2">Type of university</div>
+                      <select
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={type}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setType(e.target.value);
+                        }}
                       >
                         {typeUnis.map((item, i) => (
-                          <SelectItem key={i} value={item.value}>
+                          <option key={i} value={item.value}>
                             {item.label}
-                          </SelectItem>
+                          </option>
                         ))}
-                      </Select>
+                      </select>
                     </div>
                     <div className="p-2 mt-5 ml-5">
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="Choose your skill"
-                        radius="none"
-                        className="max-w-lg"
-                        onChange={(e) => setSkill(e.target.value)}
+                      <div className="p-2">Choose your skill</div>
+                      <select
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={skill}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setSkill(e.target.value);
+                        }}
                       >
                         {collegeSkills.map((item, i) => (
-                          <SelectItem key={i} value={item.value}>
+                          <option key={i} value={item.value}>
                             {item.label}
-                          </SelectItem>
+                          </option>
                         ))}
-                      </Select>
+                      </select>
                     </div>
                     <div className="p-2 mt-5 ml-5">
-                      <Select
-                        isRequired
-                        size="sm"
-                        label="Choose your dream career"
-                        radius="none"
-                        className="max-w-lg"
-                        onChange={(e) => setCareer(e.target.value)}
+                      <div className="p-2">Choose your interest</div>
+                      <select
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={career}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setCareer(e.target.value);
+                        }}
                       >
                         {interestingCareers.map((item, i) => (
-                          <SelectItem key={i} value={item}>
+                          <option key={i} value={item}>
                             {item}
-                          </SelectItem>
+                          </option>
                         ))}
-                      </Select>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -472,7 +408,7 @@ export default function Component() {
                 <button
                   onClick={onSubmit}
                   disabled={loading}
-                  className={`p-4 flex justify-center items-center ${
+                  className={`p-4 flex justify-center items-center outline-none ${
                     loading ? `bg-[#F1F2F2]` : `bg-blue-400`
                   } `}
                 >

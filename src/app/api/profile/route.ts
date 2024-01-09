@@ -2,8 +2,8 @@ import { ConnectToDatabase } from "@/lib/db";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { getSession } from "next-auth/react";
+import { authOptions } from "@/utils/authOptions";
 
 
 export const POST = async (req: Request) => {

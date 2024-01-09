@@ -9,6 +9,9 @@ import {
 } from "react";
 
 type DataType = {
+  categories(
+    arg0: (item: any, i: any) => import("react").JSX.Element
+  ): import("react").ReactNode;
   name: String;
   description: String;
   dos: dos[];
@@ -16,6 +19,7 @@ type DataType = {
   skills: skills[];
   salaries: Salary;
   schools: unis;
+  skillsArray: skills[];
 };
 
 type dos = String;
@@ -48,20 +52,41 @@ type UnisType = {
   type: String;
 };
 
+type AssDataType = {
+  firstName: String;
+  lastName: String;
+  monthOf: String;
+  date: String;
+  year: String;
+  ethnicOf: String;
+  gender: String;
+  graduation: String;
+  currently: String;
+  region: String;
+  type: String;
+  skill: String;
+  career: String;
+};
+
 interface ContextProps {
   data: DataType[];
   setData: Dispatch<SetStateAction<DataType[]>>;
+  assData: AssDataType[];
+  setAssData: Dispatch<SetStateAction<AssDataType>>;
 }
 
 const GlobalContext = createContext<ContextProps>({
-  data: [],
+  data: [] as DataType[],
   setData: (): DataType[] => [],
+  assData: [] as AssDataType[],
+  setAssData: (): AssDataType[] => [],
 });
 
 export const GlobalContextProvider = ({ children }) => {
   const [data, setData] = useState<[] | DataType[]>([]);
+  const [assData, setAssData] = useState<[] | AssDataType[]>([]);
   return (
-    <GlobalContext.Provider value={{ data, setData }}>
+    <GlobalContext.Provider value={{ data, setData, assData, setAssData }}>
       {children}
     </GlobalContext.Provider>
   );

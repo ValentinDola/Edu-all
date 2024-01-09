@@ -10,35 +10,52 @@ import {
   DropdownItem,
 } from "@nextui-org/dropdown";
 import { useDisclosure } from "@nextui-org/use-disclosure";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export const UserInfo = () => {
   const { data } = useSession();
+  const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  return (
-    <Dropdown>
-      <DropdownTrigger>
-        <div className="flex justify-between items-center">
-          <p className="text-base mr-5">{data?.user?.name}</p>
-          <Avatar
-            isBordered
-            src={data?.user?.image}
-            className="cursor-pointer"
-            onClick={onOpen}
-          />
-        </div>
-      </DropdownTrigger>
-      <DropdownMenu variant="faded">
-        <DropdownItem key="profile">Profile</DropdownItem>
+  const [open, setOpen] = useState(false);
 
-        <DropdownItem
-          key="delete"
-          className="text-danger"
-          color="danger"
-          onClick={() => signOut}
-        >
-          Logout
-        </DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
+  return (
+    <>
+      <Dropdown>
+        <DropdownTrigger>
+          <div className="flex justify-between items-center">
+            <p className="text-base mr-5">{data?.user?.name}</p>
+            <Avatar
+              isBordered
+              src={data?.user?.image}
+              className="cursor-pointer"
+              onClick={onOpen}
+            />
+          </div>
+        </DropdownTrigger>
+        <DropdownMenu variant="faded">
+          <DropdownItem
+            key="profile"
+            onClick={() => router.replace("/profile")}
+          >
+            Profile
+          </DropdownItem>
+
+          <DropdownItem
+            key="delete"
+            className="text-danger"
+            color="danger"
+            onClick={() =>
+              signOut({
+                redirect: true,
+                callbackUrl: `${window.location.origin}/login`,
+              })
+            }
+          >
+            Logout
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </>
   );
 };

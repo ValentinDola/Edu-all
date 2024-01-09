@@ -36,7 +36,7 @@ export default function LoginForm() {
       if (res?.error) {
         console.log("Error");
       } else {
-        router.replace("/update");
+        router.replace("/assessment");
       }
     } catch (error) {
       console.log("Error during registration", error);
