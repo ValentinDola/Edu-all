@@ -19,14 +19,14 @@ export const authOptions: NextAuthOptions = {
             name: 'credentials',
             
 
-            async authorize(credentials) {
-                const { email, password } = credentials;
+            async authorize(credentials: any) {
+                const { email, password }: any = credentials;
                 try {
                     await ConnectToDatabase();
                     const user = await prisma.user.findUnique({
                         where: { email: email }
                     });
-                    if (user && bcrypt.compare(password, user.password)) {
+                    if (user && bcrypt.compare(password, user?.password )) {
                         return user;
                         
                     } 
@@ -48,11 +48,11 @@ export const authOptions: NextAuthOptions = {
 
     ],
     callbacks: {
-        async signIn({ user, account }) {
+        async signIn({ user, account }: any) {
             console.log(account)
             if (account?.provider === "google") {
 
-                const { email} = user;
+                const { email}: any = user;
 
                 await ConnectToDatabase();
 
@@ -85,7 +85,7 @@ export const authOptions: NextAuthOptions = {
 
             if (account?.provider === "linkedin") {
 
-                const { email } = user;
+                const { email }: any = user;
 
                 await ConnectToDatabase();
 
