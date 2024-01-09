@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import NavigationIndex from "../navigation";
 import { Input, Radio, RadioGroup, Spinner } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
@@ -103,6 +103,22 @@ const interestingCareers = [
   "User Experience (UX) Designer",
 ];
 
+type AssDataType = {
+  firstName: String;
+  lastName: String;
+  monthOf: String;
+  date: String;
+  year: String;
+  ethnicOf: String;
+  gender: String;
+  graduation: String;
+  currently: String;
+  region: String;
+  type: String;
+  skill: String;
+  career: String;
+};
+
 export default function Component() {
   const router = useRouter();
   const { setAssData } = useGlobalContext();
@@ -123,7 +139,7 @@ export default function Component() {
   const [career, setCareer] = React.useState<string>("");
 
   const onSubmit = () => {
-    const data = {
+    const data: AssDataType = {
       firstName,
       lastName,
       monthOf,

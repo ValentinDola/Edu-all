@@ -15,7 +15,7 @@ export default function Result() {
   const { data } = useSession();
   const { assData } = useGlobalContext();
   const [loading, setLoading] = useState(true);
-  const [assessment, setAssessment] = useState([]);
+  const [assessment, setAssessment]: any = useState([]);
   useEffect(() => {
     setAssessment(assData);
     setTimeout(() => {

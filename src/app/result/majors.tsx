@@ -19,9 +19,9 @@ import Colleges from "./college";
 export default function Majors() {
   const { assData, data } = useGlobalContext();
 
-  const [names, setNames] = useState([]);
+  const [names, setNames]: any = useState([]);
   const [skill, setSkill] = useState("");
-  const [major, setMajor] = useState({});
+  const [major, setMajor]: any = useState([]);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -59,7 +59,7 @@ export default function Majors() {
         These are the majors we recommende based on your skill of {skill}
       </div>
       <ul className="grid grid-cols-2 gap-3">
-        {names.map((item, i) => (
+        {names.map((item: any, i: number) => (
           <li
             key={i}
             className="p-2  rounded-sm hover:bg-[#F1F2F2] hover:text-[#00aeef] cursor-pointer "

@@ -7,7 +7,7 @@ import { careers, careerSkills } from "@/components/data";
 export default function Careers() {
   const { assData, data } = useGlobalContext();
 
-  const [names, setNames] = useState([]);
+  const [names, setNames]: any = useState([]);
   const [skill, setSkill] = useState("");
 
   useEffect(() => {

@@ -74,7 +74,7 @@ interface CareerCategory {
   skillsArray?: Skills;
 }
 
-export type AssDataType = {
+type AssDataType = {
   firstName: String;
   lastName: String;
   monthOf: String;
