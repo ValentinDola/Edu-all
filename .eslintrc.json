@@ -1,13 +1,3 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-    // ... other configurations
-  ],
-  "rules": {
-    // ... other rules
-    "@typescript-eslint/ban-ts-comment": "warn"
-  }
+  "extends": "next/core-web-vitals"
 }
