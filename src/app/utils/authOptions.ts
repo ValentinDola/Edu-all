@@ -3,8 +3,8 @@ import type { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import LinkedInProvider from "next-auth/providers/linkedin";
-import { ConnectToDatabase } from "@/lib/db";
-import { prisma } from "@/lib/prisma";
+import { ConnectToDatabase } from "../lib/db";
+import { prisma } from "../lib/prisma";
 import bcrypt from "bcrypt";
 
 type User = {
@@ -45,7 +45,7 @@ export const authOptions: NextAuthOptions = {
                     const uPassword: any = user?.password;
                     
                     if (user && await bcrypt.compare(password, uPassword)) {
-                        return user as any;
+                        return user;
                         
                     } 
                     console.log(user);

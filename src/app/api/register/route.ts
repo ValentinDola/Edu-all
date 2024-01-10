@@ -1,7 +1,8 @@
-import { ConnectToDatabase } from "@/lib/db";
+
 import { NextResponse } from "next/server";
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
+import { ConnectToDatabase } from "@/app/lib/db";
 
 const prisma = new PrismaClient()
 

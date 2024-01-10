@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/store";
-import { majorsSkills } from "@/components/data";
+import { majorsSkills } from "@/app/components/data";
 import {
   Modal,
   ModalContent,

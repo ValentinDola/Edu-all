@@ -1,4 +1,4 @@
-import { ConnectToDatabase } from "@/lib/db";
+import { ConnectToDatabase } from "@/app/lib/db";
 import { NextResponse } from "next/server";
 import { PrismaClient } from '@prisma/client'
 

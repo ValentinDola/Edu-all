@@ -1,5 +1,5 @@
-import { ConnectToDatabase } from "@/lib/db";
-import { prisma } from "@/lib/prisma";
+import { ConnectToDatabase } from "@/app/lib/db";
+import { prisma } from "@/app/lib/prisma";
 import { NextResponse } from "next/server";
 
 export const POST = async (request : Request) => {

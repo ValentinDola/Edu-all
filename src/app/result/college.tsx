@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/store";
-import { Unis } from "@/components/data";
+import { Unis } from "@/app/components/data";
 
 export default function Colleges() {
   const { assData, data } = useGlobalContext();

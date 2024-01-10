@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import NavigationIndex from "../navigation";
-import { careers } from "@/components/data";
+import { careers } from "@/app/components/data";
 import { useGlobalContext } from "../context/store";
 import { Spinner } from "@nextui-org/react";
 

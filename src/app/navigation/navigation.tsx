@@ -16,7 +16,7 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import { UserInfo } from "./user";
-import Alert from "@/components/alert";
+import Alert from "@/app/components/alert";
 
 const Navigation = () => {
   const pathname = usePathname();

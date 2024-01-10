@@ -49,17 +49,15 @@ export default function ProfileIndex() {
                         Show previous results, no change in input
                       </a>
                     </li>
+
                     <li>
                       <a
-                        href="/assessment"
-                        className="text-base hover:underline hover:text-[#00aeef]"
-                      >
-                        View/Edit your responses
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => signOut}
+                        onClick={() =>
+                          signOut({
+                            redirect: true,
+                            callbackUrl: `${window.location.origin}/login`,
+                          })
+                        }
                         className="text-base hover:underline hover:text-[#00aeef] cursor-pointer"
                       >
                         Log-out

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/store";
-import { careers, careerSkills } from "@/components/data";
+import { careers, careerSkills } from "@/app/components/data";
 
 export default function Careers() {
   const { assData, data } = useGlobalContext();
