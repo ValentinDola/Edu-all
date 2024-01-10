@@ -103,22 +103,6 @@ const interestingCareers = [
   "User Experience (UX) Designer",
 ];
 
-type AssDataType = {
-  firstName: String;
-  lastName: String;
-  monthOf: String;
-  date: String;
-  year: String;
-  ethnicOf: String;
-  gender: String;
-  graduation: String;
-  currently: String;
-  region: String;
-  type: String;
-  skill: String;
-  career: String;
-};
-
 export default function Component() {
   const router = useRouter();
   const { setAssData } = useGlobalContext();
