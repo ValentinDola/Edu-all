@@ -16,8 +16,8 @@ export default function Hero() {
                   <blockquote className="text-[.9rem] text-[#6c82a3] leading-[1.35] tracking-[-0.2px] m-0 break-words">
                     The personalized career recommendations helped me focus on
                     what truly matters. I found a path that aligns with my
-                    passion, and now I&apos;m pursuing my dream career. Thank you for
-                    guiding me
+                    passion, and now I&apos;m pursuing my dream career. Thank
+                    you for guiding me
                   </blockquote>
                   <div className="flex justify-between font-medium text-[1.4rem] mt-6">
                     <span className="text-sm">Wuraola F</span>
@@ -45,27 +45,6 @@ export default function Hero() {
               Tailored recommendations for your unique journey. Explore careers,
               discover universities, and set the course for success.
             </h6>
-
-            <form
-              method="GET"
-              action="/signup"
-              className="mx-0 my-[30px] flex max-w-[80%] max-[600px]:hidden"
-            >
-              <input
-                type="email"
-                required
-                name="email"
-                placeholder="Your email..."
-                className="flex-1 border mr-2.5 border-solid border-[rgba(8,37,82,0.11)] AUTHinPUT"
-              />
-
-              <button
-                type="submit"
-                className="button_auth lowercase max-[600px]:w-full"
-              >
-                Forge your future
-              </button>
-            </form>
           </div>
         </div>
       </div>
