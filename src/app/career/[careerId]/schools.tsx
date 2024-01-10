@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { cookies } from "next/headers";
 import { useGlobalContext } from "@/app/context/store";
 
 type DataType = {
