@@ -1,9 +1,13 @@
 export default function Alert(props: any) {
-  const { message } = props;
+  const { message, error } = props;
   return (
-    <div className="relative isolate flex justify-center items-center bg-[#45D09E] px-6 py-2.5">
+    <div
+      className={`cookie_card fade-element ${
+        error ? `bg-[#FE634E]` : `bg-[#45D09E] hidden_cookie`
+      }  px-6 py-2.5`}
+    >
       <div className="flex">
-        <p className="text-sm leading-6 text-gray-900">
+        <p className="text-sm leading-6 text-white">
           <strong className="font-semibold">{message}</strong>
         </p>
       </div>

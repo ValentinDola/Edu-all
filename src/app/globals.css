@@ -629,7 +629,6 @@ button svg {
 
 /* Cookie Container with its elements */
 .cookie_card {
-  background-color: #fff;
   width: 100vw;
   padding: 10px 16px;
   box-shadow: 2px -2px 15px rgba(8, 37, 82, .05);

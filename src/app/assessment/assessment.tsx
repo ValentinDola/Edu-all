@@ -6,6 +6,7 @@ import { Input, Radio, RadioGroup, Spinner } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import { useGlobalContext } from "../context/store";
 import { useRouter } from "next/navigation";
+import Alert from "../components/alert";
 
 const month = [
   { label: "January", value: "January" },
@@ -122,6 +123,8 @@ export default function Component() {
   const [skill, setSkill] = React.useState<string>("");
   const [career, setCareer] = React.useState<string>("");
 
+  const [errorAlert, setErrorAlert] = useState<boolean>(false);
+
   const onSubmit = () => {
     const data: any = {
       firstName,
@@ -141,6 +144,7 @@ export default function Component() {
     try {
       if (skill || career !== "") {
         setLoading(true);
+
         setTimeout(() => {
           console.log("DATA : ", data);
           setAssData(data);
@@ -148,13 +152,21 @@ export default function Component() {
         }, 4000);
       } else {
         console.log("Error");
+        setErrorAlert(true);
       }
-    } catch (error) {
-      console.log(error);
-    }
+      setTimeout(() => setErrorAlert(false), 5000);
+    } catch (error) {}
   };
   return (
     <>
+      {errorAlert ? (
+        <Alert
+          error={errorAlert}
+          message={
+            "It seems that you've left some fields blank or provided incorrect information. Please review the form and fill in all required fields with accurate information before submitting again."
+          }
+        />
+      ) : null}
       <NavigationIndex />
       <section className="mt-[70px]">
         <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
@@ -162,7 +174,7 @@ export default function Component() {
             <div className="border-solid border-2 border-[#00aeef] mt-4">
               <div className="bg-[#00aeef] border-[#00aeef]  px-[15px] py-2.5 rounded-t-[3px] border-b-transparent border-b border-solid">
                 <h1 className="text-white font-semibold">
-                  {`What College Major is Right for You?`}
+                  {`What Path is Right for You?`}
                 </h1>
               </div>
 
