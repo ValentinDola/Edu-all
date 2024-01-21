@@ -40,16 +40,14 @@ export default function ProfileIndex() {
                     Please select one of the following choices
                   </h1>
                   <ul className="text-center">
-                    {assData && (
-                      <li>
-                        <a
-                          href="/result"
-                          className="text-base hover:underline hover:text-[#00aeef]"
-                        >
-                          Show previous results, no change in input
-                        </a>
-                      </li>
-                    )}
+                    <li>
+                      <a
+                        href="/result"
+                        className="text-base hover:underline hover:text-[#00aeef]"
+                      >
+                        Show previous results, no change in input
+                      </a>
+                    </li>
 
                     <li>
                       <a
