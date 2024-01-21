@@ -30,11 +30,12 @@ export default function Hero() {
 
                 <div className="h-[650px] w-[520px] overflow-hidden relative max-[980px]:w-full max-[980px]:h-full">
                   <Image
-                    height={`${100}`}
-                    width={`${100}`}
+                    width={500}
+                    height={500}
+                    sizes="100vw"
                     src={"/wura.jpg"}
                     alt={"wura"}
-                    className={`h-full w-full object-cover z-[1] absolute left-0 top-0 translate-x-0 translate-y-0 `}
+                    className={`object-cover z-[1] absolute left-0 top-0 translate-x-0 translate-y-0 `}
                   />
                 </div>
               </div>
