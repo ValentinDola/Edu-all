@@ -1,5 +1,4 @@
 import { useGlobalContext } from "@/app/context/store";
-import { Progress } from "@nextui-org/progress";
 import React, { useEffect, useState } from "react";
 
 const Education = (props: any) => {
@@ -9,7 +8,7 @@ const Education = (props: any) => {
 
   useEffect(() => {
     setCareer(data);
-  }, [career]);
+  }, [data]);
 
   return (
     <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">

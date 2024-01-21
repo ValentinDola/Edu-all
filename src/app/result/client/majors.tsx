@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "../context/store";
+import { useGlobalContext } from "../../context/store";
 import { majorsSkills } from "@/app/components/data";
 import {
   Modal,
@@ -43,7 +43,7 @@ export default function Majors() {
     };
     const uniqueMajors = removeDuplicates(majorName);
     setNames(uniqueMajors);
-  }, [skill]);
+  }, [assData]);
 
   const getMajor = (name: string) => {
     // Assuming majorsSkills?.majors is an array of majors

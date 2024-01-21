@@ -1,4 +1,4 @@
-import CareerComponent from ".";
+import CareerComponent from "../client/career";
 
 const Career = () => {
   return <CareerComponent />;

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import NavigationIndex from "../navigation";
 import { Image } from "@nextui-org/image";
 
@@ -38,7 +38,12 @@ export default async function UnisComponent() {
                 <div className="p-6">
                   <div className="p-5">
                     {item.logo !== "" ? (
-                      <Image src={item.icon} width={60} height={60} />
+                      <Image
+                        src={item.icon}
+                        width={60}
+                        height={60}
+                        alt="icon"
+                      />
                     ) : (
                       <p className="text-base">No Logo </p>
                     )}

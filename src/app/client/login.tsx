@@ -5,7 +5,7 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Alert from "./alert";
+import Alert from "../components/alert";
 
 interface IFormInput {
   email: string;

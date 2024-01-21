@@ -8,50 +8,6 @@ import {
   useState,
 } from "react";
 
-// export type DataType = {
-//   categories(
-//     arg0: (item: any, i: any) => import("react").JSX.Element
-//   ): import("react").ReactNode;
-//   name: String;
-//   description: String;
-//   dos: dos[];
-//   education: education[];
-//   skills: skills[];
-//   salaries: Salary;
-//   schools: unis;
-//   skillsArray: skills[];
-// };
-
-// type dos = String;
-// type education = String;
-// type skills = String;
-// type Salary = {
-//   MAW: String;
-//   MHW: String;
-//   TEN: String;
-// };
-// type unis = {
-//   name: String;
-//   nickname: String;
-//   founded: number;
-//   location: String;
-//   logo: String;
-//   icon: String;
-//   website: String;
-//   type: String;
-// };
-
-// type UnisType = {
-//   map(arg0: (item: any, i: any) => React.JSX.Element): React.ReactNode;
-//   name: String;
-//   nickname: String;
-//   location: String;
-//   logo: String;
-//   icon: String;
-//   website: String;
-//   type: String;
-// };
-
 type Dos = string[];
 type Education = string[];
 type Skills = string[];

@@ -21,7 +21,7 @@ const Schools = (props: any) => {
   useEffect(() => {
     setCareer(data);
     console.log(data);
-  }, [career]);
+  }, [data]);
   return (
     <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
       <div className="max-w-[1380px] w-full mx-auto my-0 px-5 py-0">

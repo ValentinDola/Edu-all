@@ -5,9 +5,9 @@ import NavigationIndex from "../navigation";
 import { useSession } from "next-auth/react";
 import { Spinner, Tab, Tabs } from "@nextui-org/react";
 import { useGlobalContext } from "../context/store";
-import Careers from "./careers";
-import Majors from "./majors";
-import Colleges from "./college";
+import Careers from "./client/careers";
+import Majors from "./client/majors";
+import Colleges from "./client/college";
 
 export default function Result() {
   const { data } = useSession();
@@ -19,7 +19,7 @@ export default function Result() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, []);
+  }, [assData]);
   return (
     <>
       <NavigationIndex />

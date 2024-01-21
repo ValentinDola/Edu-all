@@ -1,5 +1,5 @@
 import React from "react";
-import Component from "./assessment";
+import Component from "../client/assessment";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/utils/authOptions";
 import { redirect } from "next/navigation";

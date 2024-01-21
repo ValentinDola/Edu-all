@@ -49,7 +49,7 @@ export default function CareerComponent() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, []);
+  }, [active, setData]);
 
   return (
     <>

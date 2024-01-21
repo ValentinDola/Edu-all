@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import Finance from "./finance";
-import Navigation from "@/app/navigation/navigation";
+import Navigation from "@/app/client/navigation";
 import { useGlobalContext } from "@/app/context/store";
 import Overview from "./overview";
 import Schools from "./schools";
@@ -18,7 +18,7 @@ export default function Dashboard({ params }: { params: { careerId: any } }) {
   useEffect(() => {
     setMajors(data);
     console.log(data);
-  }, [majors]);
+  }, [data]);
 
   return (
     <div>

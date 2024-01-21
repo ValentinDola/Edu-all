@@ -1,5 +1,4 @@
 import { useGlobalContext } from "@/app/context/store";
-import { Progress } from "@nextui-org/progress";
 import React, { useEffect, useState } from "react";
 
 const Finance = (props: any) => {
@@ -10,7 +9,7 @@ const Finance = (props: any) => {
 
   useEffect(() => {
     setMajor(data);
-  }, [major]);
+  }, [data]);
 
   return (
     <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">

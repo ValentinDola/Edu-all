@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "../context/store";
+import { useGlobalContext } from "../../context/store";
 import { Unis } from "@/app/components/data";
 
 export default function Colleges() {
@@ -31,7 +31,7 @@ export default function Colleges() {
 
     const unis = matchedUnis.map((uni) => uni);
     setUnis(unis);
-  }, [unis]);
+  }, [assData]);
   return (
     <div className="grid grid-cols-2 gap-4">
       {unis?.map((item: any, i: number) => (

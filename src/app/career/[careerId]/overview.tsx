@@ -1,4 +1,3 @@
-import { Progress } from "@nextui-org/progress";
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "@/app/context/store";
 
@@ -11,7 +10,7 @@ const Overview = (props: any) => {
   useEffect(() => {
     setCareer(data);
     console.log(data);
-  }, [career]);
+  }, [data]);
 
   return (
     <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">

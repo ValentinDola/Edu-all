@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "../context/store";
+import { useGlobalContext } from "../../context/store";
 import { careers, careerSkills } from "@/app/components/data";
 
 export default function Careers() {
@@ -21,7 +21,7 @@ export default function Careers() {
 
     const careerName = matchedCareers.map((career) => career.name);
     setNames(careerName);
-  }, []);
+  }, [assData]);
 
   return (
     <div>
