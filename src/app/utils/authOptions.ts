@@ -44,12 +44,13 @@ export const authOptions: NextAuthOptions = {
 
                     const uPassword: any = user?.password;
                     
-                    if (user && await bcrypt.compare(password, uPassword)) {
-                        return user;
+                    if (user && await bcrypt.compare(password, uPassword))
                         
-                    } 
-                    console.log(user);
+                        return user;
+                   
+                    
                     return null;
+                    
 
                 } catch (error) {
                     console.log('Error', error);
@@ -93,14 +94,12 @@ export const authOptions: NextAuthOptions = {
                             }),
                         });
 
-                        if (res.ok)
-                            return user
+                if (res.ok)
+                    return user
 
-
-
-                    } catch (error) {
-                        console.log("Error during registration", error);
-                    }
+                } catch (error) {
+                    console.log("Error during registration", error);
+                }
             }
 
             if (account?.provider === "linkedin") {

@@ -81,6 +81,7 @@ svg:not(:root) {
 
 input {
   font-family: 'Montserrat';
+  font-weight: 600;
   line-height: 1.15;
   margin: 0;
 }

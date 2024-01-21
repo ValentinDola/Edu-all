@@ -3,7 +3,7 @@ export default function Alert(props: any) {
   return (
     <div
       className={`cookie_card fade-element ${
-        error ? `bg-[#FE634E]` : `bg-[#45D09E] hidden_cookie`
+        error ? `bg-[#EE3D48]` : `bg-[#45D09E] hidden_cookie`
       }  px-6 py-2.5`}
     >
       <div className="flex">

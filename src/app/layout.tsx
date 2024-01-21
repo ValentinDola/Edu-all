@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Providers, AuthProvider } from "./providers";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Navigation from "./navigation/navigation";
 import { GlobalContextProvider } from "./context/store";
 
 const montserrat = Montserrat({
@@ -14,17 +13,6 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Career",
-};
-
-type DataType = {
-  map(arg0: (item: any, i: any) => React.JSX.Element): React.ReactNode;
-  name: String;
-  nickname: String;
-  location: String;
-  logo: String;
-  icon: String;
-  website: String;
-  type: String;
 };
 
 export default async function RootLayout({

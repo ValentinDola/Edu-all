@@ -13,6 +13,7 @@ export const POST = async (req: Request) => {
 
         if (!name || !email || !password) 
             return NextResponse.json({ message: 'Invalide Data' }, { status: 442 })
+        
         const hashedPassword = await bcrypt.hash(password, 10)
         
         const user = { name, email, password: hashedPassword }

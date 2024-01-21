@@ -29,6 +29,7 @@ export const UserInfo = () => {
               isBordered
               src={data?.user?.image}
               className="cursor-pointer"
+              aria-label="user"
               onClick={onOpen}
             />
           </div>

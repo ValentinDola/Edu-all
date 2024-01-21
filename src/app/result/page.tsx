@@ -3,10 +3,8 @@
 import React, { useEffect, useState } from "react";
 import NavigationIndex from "../navigation";
 import { useSession } from "next-auth/react";
-import { Badge, Spinner, Tab, Tabs } from "@nextui-org/react";
+import { Spinner, Tab, Tabs } from "@nextui-org/react";
 import { useGlobalContext } from "../context/store";
-import Education from "../career/[careerId]/education";
-import Overview from "../career/[careerId]/overview";
 import Careers from "./careers";
 import Majors from "./majors";
 import Colleges from "./college";

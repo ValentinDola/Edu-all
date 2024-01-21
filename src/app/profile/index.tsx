@@ -11,7 +11,6 @@ export default function ProfileIndex() {
   const { assData } = useGlobalContext();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log(assData);
     setLoading(true);
     setTimeout(() => {
       setLoading(false);

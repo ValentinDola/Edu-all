@@ -5,10 +5,23 @@ import { NextResponse } from "next/server";
 export const POST = async (request : Request) => {
     const {email, name} = await request.json();
     await ConnectToDatabase();
-    const user = { email, name };
-    const saved = await prisma.user.create({
-        data: user
+    
+    const userExist = await prisma.user.findUnique({
+        where: {
+            email: email
+        }            
     })
-    console.log(saved)
+    const user = { email, name };
+    
+    if (userExist) {
+        console.log(userExist)
         return NextResponse.json({user}, {status: 201})
+    } else {
+        const saved = await prisma.user.create({
+        data: user
+        })
+        console.log(saved)
+        return NextResponse.json({user}, {status: 201})
+    }
+    
 }
