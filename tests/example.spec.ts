@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("navigation", () => {
   test.beforeEach(async ({ page }) => {
     // Go to the starting url before each test.
-    await page.goto("http://localhost:3000");
+    await page.goto("https://edu-all-k8z7.vercel.app/");
     // Expect a title "to contain" a substring.
     await expect(page).toHaveTitle(/Career/);
   });
@@ -12,7 +12,7 @@ test.describe("navigation", () => {
     // Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)
 
     // Go to the login page
-    await page.goto("http://localhost:3000/login");
+    await page.goto("https://edu-all-k8z7.vercel.app/login");
 
     
       // Get the input and fill it with a valid email address
@@ -29,7 +29,7 @@ test.describe("navigation", () => {
   
 
     // Check if the current URL is the login page
-    const assessmentPageUrl = 'http://localhost:3000/assessment'; // Replace with the actual URL of your login page
+    const assessmentPageUrl = "https://edu-all-k8z7.vercel.app/assessment"; // Replace with the actual URL of your login page
     const currentUrl = page.url();
     expect(currentUrl).toBe(assessmentPageUrl);
   });
@@ -37,7 +37,7 @@ test.describe("navigation", () => {
   test("should navigate to the career page", async ({ page }) => {
 
     // Navigate to the career page
-    await page.goto('http://localhost:3000/career');
+    await page.goto('https://edu-all-k8z7.vercel.app/career');
 
     // Example: Assuming there is a list of careers with a specific selector
   const careerSelector = '.item';
@@ -75,7 +75,7 @@ test.describe("navigation", () => {
 
 test('Universtity Page Test', async ({ page }) => {
   // Navigate to the data page
-  await page.goto('http://localhost:3000/unis'); // Replace with your actual data page URL
+  await page.goto('https://edu-all-k8z7.vercel.app/unis', { timeout: 60000 }); // Replace with your actual data page URL
 
   // Example: Assuming there is a list of data items with a specific selector
   const dataItemSelector = '.unis';
