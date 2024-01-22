@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("navigation", () => {
   test.beforeEach(async ({ page }) => {
     // Go to the starting url before each test.
-    await page.goto("http://localhost:3000/");
+    await page.goto("http://localhost:3000");
     // Expect a title "to contain" a substring.
     await expect(page).toHaveTitle(/Career/);
   });
@@ -29,7 +29,7 @@ test.describe("navigation", () => {
   
 
     // Check if the current URL is the login page
-    const assessmentPageUrl = '"http://localhost:3000/login?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Flogin&error=CredentialsSignin"'; // Replace with the actual URL of your login page
+    const assessmentPageUrl = 'http://localhost:3000/assessment'; // Replace with the actual URL of your login page
     const currentUrl = page.url();
     expect(currentUrl).toBe(assessmentPageUrl);
   });
@@ -86,10 +86,10 @@ test('Universtity Page Test', async ({ page }) => {
   // Get the list of data items
   const dataItems = await page.$$eval(dataItemSelector, (items) =>
     items.map((item) => {
-      const name = item.querySelector('.text-[20px]')?.textContent || '';
-      const nickname = item.querySelector('.text-base')?.textContent || '';
-      const location = item.querySelector('.text-base:nth-child(3)')?.textContent || '';
-      const type = item.querySelector('.text-base:nth-child(4)')?.textContent || '';
+      const name = item.querySelector('.name')?.textContent || '';
+      const nickname = item.querySelector('.nickname')?.textContent || '';
+      const location = item.querySelector('.location')?.textContent || '';
+      const type = item.querySelector('.type')?.textContent || '';
       const logoPresent = item.querySelector('img') !== null;
 
       return {

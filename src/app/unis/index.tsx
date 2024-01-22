@@ -48,10 +48,14 @@ export default async function UnisComponent() {
                       <p className="text-base">No Logo </p>
                     )}
                   </div>
-                  <h3 className="text-[20px]">{item.name}</h3>
-                  <p className="text-base">Nickname - {item.nickname}</p>
-                  <p className="text-base">Location - {item.location}</p>
-                  <p className="text-base">Type - {item.type}</p>
+                  <h3 className="text-[20px] name">{item.name}</h3>
+                  <p className="text-base nickname">
+                    Nickname - {item.nickname}
+                  </p>
+                  <p className="text-base location">
+                    Location - {item.location}
+                  </p>
+                  <p className="text-base type">Type - {item.type}</p>
                 </div>
               </a>
             ))}
