@@ -78,13 +78,17 @@ export default function FAQ() {
 
       <section className="mt-[70px]">
         <main className="mx-auto max-w-5xl py-4 sm:px-6 lg:px-8">
-          <Accordion showDivider={false} itemClasses={itemClasses}>
+          <Accordion
+            showDivider={false}
+            itemClasses={itemClasses}
+            className="accordion"
+          >
             {careerRecommendationFAQ.map((faq, i) => (
               <AccordionItem
                 key={i}
                 aria-label={faq.question}
                 title={faq.question}
-                className="accordion"
+                className="accordion-item"
               >
                 {faq.description}
               </AccordionItem>

@@ -85,7 +85,7 @@ test.describe("navigation", () => {
     await page.waitForSelector('.accordion'); // Replace with your actual selector
 
     // Example: Get the text content of the expanded AccordionItem
-    const expandedAccordionItemText = await page.textContent('.accordion'); // Replace with your actual selector
+    const expandedAccordionItemText = await page.textContent('.accordion-item'); // Replace with your actual selector
 
     // Example: Assert that the content of the expanded AccordionItem matches the expected description
     expect(expandedAccordionItemText).toContain(careerRecommendationFAQ[i].description);
