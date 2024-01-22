@@ -85,7 +85,7 @@ export default function RegisterForm() {
                               src={"/link.jpg"}
                               width={500}
                               height={500}
-                              alt="Picture of the author"
+                              alt="linkedin"
                               style={{ maxWidth: "180px", cursor: "pointer" }}
                               onClick={() => signIn("linkedin")}
                             />
@@ -96,7 +96,7 @@ export default function RegisterForm() {
                               src={"/google.jpg"}
                               width={500}
                               height={500}
-                              alt="Picture of the author"
+                              alt="google"
                               style={{ maxWidth: "180px", cursor: "pointer" }}
                               onClick={() => signIn("google")}
                             />

@@ -33,9 +33,9 @@ export default async function UnisComponent() {
                 key={i}
                 target="_blank"
                 href={item.website}
-                className="w-auto h-auto bg-[#F1F2F2] rounded-xl transition"
+                className="w-auto h-auto bg-[#F1F2F2] rounded-xl transition unis"
               >
-                <div className="p-6">
+                <div className="p-6 ">
                   <div className="p-5">
                     {item.logo !== "" ? (
                       <Image

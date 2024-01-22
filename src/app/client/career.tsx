@@ -32,7 +32,7 @@ interface CareerCategory {
 export default function CareerComponent() {
   const { setData } = useGlobalContext();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
   const [categories, setCategories] = useState<CareerCategory[] | null>(null);
 
@@ -75,7 +75,7 @@ export default function CareerComponent() {
                       }
                       onClick={() => handleCategoriesActivity(i)}
                     >
-                      <div className=" -pt-6 px-3 pb-1 p">
+                      <div className=" -pt-6 px-3 pb-1 item">
                         <span className="text-base">{item.name}</span>
                       </div>
                     </li>
@@ -101,7 +101,7 @@ export default function CareerComponent() {
                           href={`/career/${i}`}
                           className="w-full justify-center items-center cursor-pointer "
                         >
-                          <div className="-pt-4 px-3 pb-0.5">
+                          <div className="-pt-4 px-3 pb-0.5 category-item">
                             <span className="text-base ">{item.name}</span>
                           </div>
                         </Link>

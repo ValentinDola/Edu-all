@@ -106,6 +106,7 @@ const interestingCareers = [
 
 export default function Component() {
   const router = useRouter();
+  const { data }: any = useSession();
   const { setAssData } = useGlobalContext();
 
   const [loading, setLoading] = useState(false);
@@ -186,35 +187,23 @@ export default function Component() {
                 </div>
                 <div className=" p-2">
                   <h1 className="font-bold text-2xl ">Profile Info</h1>
+                  <div className="p-2 mt-4 ">
+                    <Input
+                      disabled
+                      type="text"
+                      label="Full Name"
+                      radius="sm"
+                      variant="bordered"
+                      placeholder={data?.user?.name}
+                      className="max-w-xl"
+                    />
+                  </div>
                   <div className="p-2 grid grid-cols-2 gap-2">
-                    <div className="p-2 mt-4">
-                      <Input
-                        onValueChange={(value: string) => setFirstName(value)}
-                        isRequired
-                        type="text"
-                        label="First Name"
-                        radius="sm"
-                        variant="bordered"
-                        placeholder="john"
-                        className="max-w-md"
-                      />
-                    </div>
-                    <div className="p-2 mt-4">
-                      <Input
-                        onValueChange={(value: string) => setLastName(value)}
-                        isRequired
-                        type="text"
-                        label="Last Name"
-                        radius="sm"
-                        variant="bordered"
-                        placeholder="DOE"
-                        className="max-w-md"
-                      />
-                    </div>
                     <div className="mt-4 p-2">
                       <div className="p-1">Date Of Birth</div>
                       <div className="p-2 grid grid-cols-3 gap-1">
                         <select
+                          data-testid="month"
                           required
                           value={monthOf}
                           onChange={(e) => setMonth(e.target.value)}
@@ -229,6 +218,7 @@ export default function Component() {
 
                         <select
                           required
+                          data-testid="day"
                           className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                           value={date}
                           onChange={(
@@ -248,6 +238,7 @@ export default function Component() {
 
                         <select
                           required
+                          data-testid="year"
                           className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                           value={year}
                           onChange={(
