@@ -32,7 +32,6 @@ export default function Hero() {
                   <Image
                     width={500}
                     height={500}
-                    sizes="100vw"
                     src={"/wura.jpg"}
                     alt={"wura"}
                     className={`object-cover z-[1] absolute left-0 top-0 translate-x-0 translate-y-0 `}

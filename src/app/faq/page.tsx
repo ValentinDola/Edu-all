@@ -84,6 +84,7 @@ export default function FAQ() {
                 key={i}
                 aria-label={faq.question}
                 title={faq.question}
+                className="accordion"
               >
                 {faq.description}
               </AccordionItem>
