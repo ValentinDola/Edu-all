@@ -60,8 +60,6 @@ test.describe("navigation", () => {
         expect(await page.textContent(`.unis:nth-child(${i + 1}) p.text-base`)).toContain('No Logo');
         }
 
-        // Output information for demonstration purposes
-        console.log(`Data item ${i + 1}:`, item);
     }
     });
 

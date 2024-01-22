@@ -104,7 +104,7 @@ const interestingCareers = [
   "User Experience (UX) Designer",
 ];
 
-export default function Component() {
+export const AssessmentForm = () => {
   const router = useRouter();
   const { data }: any = useSession();
   const { setAssData } = useGlobalContext();
@@ -430,4 +430,4 @@ export default function Component() {
       </section>
     </>
   );
-}
+};
