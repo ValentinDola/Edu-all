@@ -261,6 +261,7 @@ export const AssessmentForm = () => {
                     <div className="p-2 mt-4">
                       <div className="p-2">Ethnic Background</div>
                       <select
+                        data-testid="ethnic"
                         required
                         className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         value={ethnicOf}
@@ -277,6 +278,7 @@ export const AssessmentForm = () => {
                     </div>
                     <div className="p-4">
                       <RadioGroup
+                        data-testid="gender"
                         label="Select your gender"
                         orientation="horizontal"
                         value={gender}
@@ -296,6 +298,7 @@ export const AssessmentForm = () => {
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">High School Grad-Year</div>
                       <select
+                        data-testid="graduation"
                         required
                         className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         value={graduation}
@@ -314,6 +317,7 @@ export const AssessmentForm = () => {
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">Currently Attending</div>
                       <select
+                        data-testid="currently"
                         required
                         className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         value={currently}
@@ -339,6 +343,7 @@ export const AssessmentForm = () => {
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">Choose your region to school</div>
                       <select
+                        data-testid="region"
                         required
                         className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         value={region}
@@ -356,6 +361,7 @@ export const AssessmentForm = () => {
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">Type of university</div>
                       <select
+                        data-testid="type"
                         required
                         className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         value={type}
@@ -373,6 +379,7 @@ export const AssessmentForm = () => {
                     <div className="p-2 mt-5 ml-5">
                       <div className="p-2">Choose your skill</div>
                       <select
+                        data-testid="skill"
                         required
                         className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         value={skill}
@@ -390,6 +397,7 @@ export const AssessmentForm = () => {
                     <div className="p-2 mt-5 ml-5">
                       <div className="p-2">Choose your interest</div>
                       <select
+                        data-testid="career"
                         required
                         className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         value={career}
@@ -409,6 +417,7 @@ export const AssessmentForm = () => {
               </div>
               <div className="flex justify-center p-5">
                 <button
+                  data-testid="button"
                   onClick={onSubmit}
                   disabled={loading}
                   className={`p-4 flex justify-center items-center outline-none ${

@@ -25,13 +25,16 @@ export default function Careers() {
 
   return (
     <div>
-      <div className="p-2">
+      <div className="p-2" data-testid="heading">
         These are the careers that you can be successful in based on your skill
         of {skill}
       </div>
-      <ul className="grid grid-cols-2  list-disc ml-7">
+      <ul
+        className="grid grid-cols-2  list-disc ml-7"
+        data-testid="list-container"
+      >
         {names.map((item: any, i: number) => (
-          <li key={i} className="text-sm">
+          <li key={i} className="text-sm item-list" data-testid="item-list">
             {item}
           </li>
         ))}
