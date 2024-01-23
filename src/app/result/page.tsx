@@ -30,10 +30,6 @@ export default function Result() {
           </main>
         ) : (
           <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
-            <div className="text-xl font-semibold">
-              {" "}
-              {`Howdy, ${data?.user?.name}`}{" "}
-            </div>
             <div className=" max-w-[1380px] w-full mx-auto my-0 px-5 py-0">
               <div className="border-solid border-2 border-[#00aeef] mt-4 col-span-2">
                 <div className="bg-[#00aeef] border-[#00aeef]  px-[15px] py-2.5 rounded-t-[3px] border-b-transparent border-b border-solid">

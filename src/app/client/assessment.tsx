@@ -110,8 +110,7 @@ export const AssessmentForm = () => {
   const { setAssData } = useGlobalContext();
 
   const [loading, setLoading] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+
   const [monthOf, setMonth] = React.useState<string>("");
   const [date, setDate] = React.useState<string>("");
   const [year, setYear] = React.useState<string>("");
@@ -128,8 +127,6 @@ export const AssessmentForm = () => {
 
   const onSubmit = () => {
     const data: any = {
-      firstName,
-      lastName,
       monthOf,
       date,
       year,
@@ -172,6 +169,8 @@ export const AssessmentForm = () => {
       <section className="mt-[70px]">
         <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
           <div className="max-w-[1380px] w-full mx-auto my-0 px-5 py-0">
+            <div className="font-bold text-2xl ">{`Howdy, ${data?.user?.name}`}</div>
+
             <div className="border-solid border-2 border-[#00aeef] mt-4">
               <div className="bg-[#00aeef] border-[#00aeef]  px-[15px] py-2.5 rounded-t-[3px] border-b-transparent border-b border-solid">
                 <h1 className="text-white font-semibold">
@@ -209,6 +208,9 @@ export const AssessmentForm = () => {
                           onChange={(e) => setMonth(e.target.value)}
                           className="py-2 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         >
+                          <option value="" disabled hidden>
+                            Select Month
+                          </option>
                           {month.map((item, i) => (
                             <option key={i} value={item.value}>
                               {item.label}
@@ -227,6 +229,9 @@ export const AssessmentForm = () => {
                             setDate(e.target.value);
                           }}
                         >
+                          <option value="" disabled hidden>
+                            Select Day
+                          </option>
                           {daysOfMonth.map((item, i) => {
                             return (
                               <option key={i} value={item}>
@@ -247,6 +252,9 @@ export const AssessmentForm = () => {
                             setYear(e.target.value);
                           }}
                         >
+                          <option value="" disabled hidden>
+                            Select Year
+                          </option>
                           {years.map((item, i) => {
                             return (
                               <option key={i} value={item}>
@@ -269,6 +277,9 @@ export const AssessmentForm = () => {
                           setEthnic(e.target.value);
                         }}
                       >
+                        <option value="" disabled hidden>
+                          Select Ethnic
+                        </option>
                         {ethnic.map((item, i) => (
                           <option key={i} value={item.value}>
                             {item.label}
@@ -306,6 +317,9 @@ export const AssessmentForm = () => {
                           setGraduation(e.target.value);
                         }}
                       >
+                        <option value="" disabled hidden>
+                          Select Graduation Year
+                        </option>
                         {graduationYears.map((item, i) => (
                           <option key={i} value={item}>
                             {item}
@@ -325,6 +339,9 @@ export const AssessmentForm = () => {
                           setCurrently(e.target.value);
                         }}
                       >
+                        <option value="" disabled hidden>
+                          Select Currently Attending
+                        </option>
                         {currentlyAttending.map((item, i) => (
                           <option key={i} value={item.value}>
                             {item.label}
@@ -351,6 +368,9 @@ export const AssessmentForm = () => {
                           setRegion(e.target.value);
                         }}
                       >
+                        <option value="" disabled hidden>
+                          Select Region
+                        </option>
                         {ghanaRegions.map((item, i) => (
                           <option key={i} value={item.value}>
                             {item.label}
@@ -369,6 +389,9 @@ export const AssessmentForm = () => {
                           setType(e.target.value);
                         }}
                       >
+                        <option value="" disabled hidden>
+                          Select Type of Unis
+                        </option>
                         {typeUnis.map((item, i) => (
                           <option key={i} value={item.value}>
                             {item.label}
@@ -387,6 +410,9 @@ export const AssessmentForm = () => {
                           setSkill(e.target.value);
                         }}
                       >
+                        <option value="" disabled hidden>
+                          Select Skill
+                        </option>
                         {collegeSkills.map((item, i) => (
                           <option key={i} value={item.value}>
                             {item.label}
@@ -405,6 +431,9 @@ export const AssessmentForm = () => {
                           setCareer(e.target.value);
                         }}
                       >
+                        <option value="" disabled hidden>
+                          Select Interest
+                        </option>
                         {interestingCareers.map((item, i) => (
                           <option key={i} value={item}>
                             {item}
