@@ -123,7 +123,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/about"
+                  href="/"
                 >
                   About Us
                 </a>
@@ -132,7 +132,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/careers"
+                  href="/"
                 >
                   Careers
                 </a>
@@ -140,7 +140,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/ambassadors"
+                  href="/"
                 >
                   Ambassadors
                 </a>
@@ -149,7 +149,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/privacy"
+                  href="/"
                 >
                   Privacy
                 </a>
@@ -157,7 +157,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/terms"
+                  href="/"
                 >
                   Terms
                 </a>
@@ -170,7 +170,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/about"
+                  href="/"
                 >
                   FAQs
                 </a>
@@ -179,7 +179,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/careers"
+                  href="/"
                 >
                   Security
                 </a>
@@ -187,7 +187,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/ambassadors"
+                  href="/"
                 >
                   Blog
                 </a>
@@ -196,7 +196,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/privacy"
+                  href="/"
                 >
                   Help Center
                 </a>
@@ -218,7 +218,7 @@ export default function Footer() {
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
-                  href="/careers"
+                  href="/"
                 >
                   Whatsapp
                 </a>
