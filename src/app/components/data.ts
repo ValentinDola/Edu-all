@@ -2,8 +2,8 @@ type Dos = string[];
 type Education = string[];
 type Skills = string[];
 type Salaries = {
-  MAW: string;
-  MHW: string;
+  MAW: number;
+  MHW: number;
   TEN: string;
 };
 type Schools = /* type for schools data */ any; // Please replace this with the actual type
@@ -429,9 +429,9 @@ export const careers: CareerCategory[] = [
           "Quality Control Analysis: Conducting tests and inspections of products, services, or processes to evaluate quality or performance.",
         ],
         salaries: {
-          MAW: "$71,070",
-          MHW: "$34.17",
-          TEN: "11,970",
+          MAW: 71070,
+          MHW: 34,
+          TEN: '11,970',
         },
         schools: Unis,
         skillsArray: [
@@ -527,9 +527,9 @@ export const careers: CareerCategory[] = [
           "Management of Material Resources: Obtaining and seeing to the appropriate use of equipment, facilities, and materials needed to do certain work.",
         ],
         salaries: {
-          MAW: "$84,470",
-          MHW: "$40.61",
-          TEN: "99,860",
+          MAW: 84470,
+          MHW: 40,
+          TEN: '99,860',
         },
         schools: Unis,
         skillsArray: [
@@ -625,8 +625,8 @@ export const careers: CareerCategory[] = [
           "Management of Material Resources: Obtaining and seeing to the appropriate use of equipment, facilities, and materials needed to do certain work.",
         ],
         salaries: {
-          MAW: "$84,470",
-          MHW: "$40.61",
+          MAW: 84470,
+          MHW: 40,
           TEN: "99,860",
         },
         schools: Unis,
@@ -725,8 +725,8 @@ export const careers: CareerCategory[] = [
           "Management of Personnel Resources - Motivating, developing, and directing people as they work, identifying the best people for the job.",
         ],
         salaries: {
-          MAW: "$54,290",
-          MHW: "$26.10",
+          MAW: 54290,
+          MHW: 26,
           TEN: "96,810",
         },
         schools: Unis,
@@ -809,8 +809,8 @@ export const careers: CareerCategory[] = [
           "Negotiation - Bringing others together and trying to reconcile differences.",
         ],
         salaries: {
-          MAW: "$52,120",
-          MHW: "$25.06",
+          MAW: 5220,
+          MHW: 25,
           TEN: "72,150",
         },
         schools: Unis,
@@ -903,8 +903,8 @@ export const careers: CareerCategory[] = [
           "Programming - Writing computer programs for various purposes.",
         ],
         salaries: {
-          MAW: "$118,700",
-          MHW: "$57.07",
+          MAW: 118700,
+          MHW: 57,
           TEN: "72,950",
         },
         schools: Unis,
@@ -1002,8 +1002,8 @@ export const careers: CareerCategory[] = [
           "Negotiation - Bringing others together and trying to reconcile differences.",
         ],
         salaries: {
-          MAW: "$82,867",
-          MHW: "$39.84",
+          MAW: 8267,
+          MHW: 39,
           TEN: "48,620",
         },
         schools: Unis,
@@ -1063,8 +1063,8 @@ export const careers: CareerCategory[] = [
           "Systems Evaluation - Identifying measures or indicators of system performance and the actions needed to improve or correct performance, relative to the goals of the system.",
         ],
         salaries: {
-          MAW: "$52,290",
-          MHW: "$25.14",
+          MAW: 5290,
+          MHW: 25,
           TEN: "210,710",
         },
         schools: Unis,
@@ -1137,8 +1137,8 @@ export const careers: CareerCategory[] = [
           "Service Orientation - Actively looking for ways to help people.",
         ],
         salaries: {
-          MAW: "$57,410",
-          MHW: "$27.60",
+          MAW: 5710,
+          MHW: 27,
           TEN: "11,520",
         },
         schools: Unis,
@@ -1162,8 +1162,8 @@ export const careers: CareerCategory[] = [
         ],
         skills: ["None"],
         salaries: {
-          MAW: "$30,960",
-          MHW: "$14.88",
+          MAW: 3060,
+          MHW: 14,
           TEN: "15,020",
         },
         schools: Unis,
@@ -1240,8 +1240,8 @@ export const careers: CareerCategory[] = [
           "Management of Financial Resources - Determining how money will be spent to get the work done, and accounting for these expenditures.",
         ],
         salaries: {
-          MAW: "$76,730",
-          MHW: "$36.89",
+          MAW: 7630,
+          MHW: 36,
           TEN: "1,246,540",
         },
         schools: Unis,
@@ -1302,8 +1302,8 @@ export const careers: CareerCategory[] = [
           "Systems Analysis - Determining how a system should work and how changes in conditions, operations, and the environment will affect outcomes.",
         ],
         salaries: {
-          MAW: "$58,030",
-          MHW: "$27.90",
+          MAW: 5830,
+          MHW: 27,
           TEN: "60,770",
         },
         schools: Unis,
@@ -1362,8 +1362,8 @@ export const careers: CareerCategory[] = [
           "Service Orientation - Actively looking for ways to help people.",
         ],
         salaries: {
-          MAW: "$76,230",
-          MHW: "$36.65",
+          MAW: 7630,
+          MHW: 36,
           TEN: "123,270",
         },
         schools: Unis,
@@ -1441,8 +1441,8 @@ export const careers: CareerCategory[] = [
           "Negotiation - Bringing others together and trying to reconcile differences.",
         ],
         salaries: {
-          MAW: "$41,170",
-          MHW: "$19.79",
+          MAW: 4170,
+          MHW: 19,
           TEN: "51,900",
         },
         schools: Unis,
@@ -1502,8 +1502,8 @@ export const careers: CareerCategory[] = [
           "Instructing - Teaching others how to do something.",
         ],
         salaries: {
-          MAW: "$501,550",
-          MHW: "$204.78",
+          MAW: 501550,
+          MHW: 204,
           TEN: "173,3300",
         },
         schools: Unis,
@@ -1558,8 +1558,8 @@ export const careers: CareerCategory[] = [
           "Management of Personnel Resources - Motivating, developing, and directing people as they work, identifying the best people for the job.",
         ],
         salaries: {
-          MAW: "$501,550",
-          MHW: "$204.78",
+          MAW: 501550,
+          MHW: 204,
           TEN: "173,3300",
         },
         schools: Unis,
@@ -1625,8 +1625,8 @@ export const careers: CareerCategory[] = [
           "Technology Design - Generating or adapting equipment and technology to serve user needs.",
         ],
         salaries: {
-          MAW: "$501,550",
-          MHW: "$204.78",
+          MAW: 501550,
+          MHW: 204,
           TEN: "173,3300",
         },
         schools: Unis,

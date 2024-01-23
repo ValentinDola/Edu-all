@@ -1,5 +1,6 @@
 "use client";
 
+// Import React and required components and functions
 import React, { SetStateAction, useState } from "react";
 import NavigationIndex from "../navigation";
 import { Input, Radio, RadioGroup, Spinner } from "@nextui-org/react";
@@ -8,6 +9,9 @@ import { useGlobalContext } from "../context/store";
 import { useRouter } from "next/navigation";
 import Alert from "../components/alert";
 
+// Define arrays for dropdown options
+
+// ... (options for months)
 const month = [
   { label: "January", value: "January" },
   { label: "February", value: "February" },
@@ -23,18 +27,22 @@ const month = [
   { label: "December", value: "December" },
 ];
 
+// Generate an array representing the days of the month (1 to 31)
 const daysOfMonth = Array.from({ length: 31 }, (_, index) => index + 1);
 
+// Generate an array representing years from 1950 to 2010 (inclusive)
 const years = Array.from(
   { length: 2010 - 1950 + 1 },
   (_, index) => 1950 + index
 );
 
+// Generate an array representing graduation years from 1950 to 2030 (inclusive)
 const graduationYears = Array.from(
   { length: 2030 - 1950 + 1 },
   (_, index) => 1950 + index
 );
 
+// ... (options for ethnic background)
 const ethnic = [
   { label: "African", value: "African" },
   { label: "African American", value: "African American" },
@@ -51,6 +59,7 @@ const ethnic = [
   { label: "Middle Eastern", value: "Middle Eastern" },
 ];
 
+// ... (options for Ghana regions)
 const ghanaRegions = [
   { label: "Ahafo", value: "Ahafo" },
   { label: "Ashanti", value: "Ashanti" },
@@ -70,6 +79,7 @@ const ghanaRegions = [
   { label: "Western North", value: "Western North" },
 ];
 
+// ... (options for college skills)
 const collegeSkills = [
   { label: "Time Management", value: "Time Management" },
   { label: "Organization", value: "Organization" },
@@ -81,6 +91,7 @@ const collegeSkills = [
   { label: "Writing and Editing", value: "Writing and Editing" },
 ];
 
+// ... (options for currently attending)
 const currentlyAttending = [
   { label: "High School", value: "highSchool" },
   { label: "Home School", value: "homeSchool" },
@@ -88,11 +99,13 @@ const currentlyAttending = [
   { label: "Not Attending School", value: "notAttendingSchool" },
 ];
 
+// ... (options for type of universities)
 const typeUnis = [
   { label: "Public", value: "public" },
   { label: "Private", value: "private" },
 ];
 
+// ... (options for interesting careers)
 const interestingCareers = [
   "Data Scientist",
   "Graphic Designer",
@@ -104,13 +117,13 @@ const interestingCareers = [
   "User Experience (UX) Designer",
 ];
 
+// Export the AssessmentForm component
 export const AssessmentForm = () => {
+  // Initialize state variables
   const router = useRouter();
   const { data }: any = useSession();
   const { setAssData } = useGlobalContext();
-
   const [loading, setLoading] = useState(false);
-
   const [monthOf, setMonth] = React.useState<string>("");
   const [date, setDate] = React.useState<string>("");
   const [year, setYear] = React.useState<string>("");
@@ -122,9 +135,9 @@ export const AssessmentForm = () => {
   const [type, setType] = React.useState<string>("");
   const [skill, setSkill] = React.useState<string>("");
   const [career, setCareer] = React.useState<string>("");
-
   const [errorAlert, setErrorAlert] = useState<boolean>(false);
 
+  // Handle form submission
   const onSubmit = () => {
     const data: any = {
       monthOf,
@@ -143,6 +156,7 @@ export const AssessmentForm = () => {
       if (skill || career !== "") {
         setLoading(true);
 
+        // Simulate a delay before redirecting
         setTimeout(() => {
           console.log("DATA : ", data);
           setAssData(data);
@@ -152,12 +166,16 @@ export const AssessmentForm = () => {
         console.log("Error");
         setErrorAlert(true);
       }
+
+      // Reset error alert after 5 seconds
       setTimeout(() => setErrorAlert(false), 5000);
     } catch (error) {}
   };
+
   return (
     <>
       {errorAlert ? (
+        // Render alert component if there's an error
         <Alert
           error={errorAlert}
           message={
@@ -165,27 +183,37 @@ export const AssessmentForm = () => {
           }
         />
       ) : null}
+
+      {/* Render NavigationIndex component */}
       <NavigationIndex />
+
+      {/* Render the assessment form */}
       <section className="mt-[70px]">
         <main className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
           <div className="max-w-[1380px] w-full mx-auto my-0 px-5 py-0">
             <div className="font-bold text-2xl ">{`Howdy, ${data?.user?.name}`}</div>
 
             <div className="border-solid border-2 border-[#00aeef] mt-4">
-              <div className="bg-[#00aeef] border-[#00aeef]  px-[15px] py-2.5 rounded-t-[3px] border-b-transparent border-b border-solid">
+              {/* Header Section */}
+              <div className="bg-[#00aeef] border-[#00aeef] px-[15px] py-2.5 rounded-t-[3px] border-b-transparent border-b border-solid">
                 <h1 className="text-white font-semibold">
                   {`What Path is Right for You?`}
                 </h1>
               </div>
 
+              {/* Main Content Section */}
               <div className="p-5">
+                {/* Introduction Text */}
                 <div className="text-base p-2">
                   After taking this assessment, you will be recommended the top
-                  majors, colleges and careers based on your academic
-                  achievements, interests and personality.
+                  majors, colleges, and careers based on your academic
+                  achievements, interests, and personality.
                 </div>
-                <div className=" p-2">
+
+                {/* Profile Info Section */}
+                <div className="p-2">
                   <h1 className="font-bold text-2xl ">Profile Info</h1>
+                  {/* Full Name Input */}
                   <div className="p-2 mt-4 ">
                     <Input
                       disabled
@@ -197,10 +225,13 @@ export const AssessmentForm = () => {
                       className="max-w-xl"
                     />
                   </div>
+
+                  {/* Date of Birth Section */}
                   <div className="p-2 grid grid-cols-2 gap-2">
                     <div className="mt-4 p-2">
                       <div className="p-1">Date Of Birth</div>
                       <div className="p-2 grid grid-cols-3 gap-1">
+                        {/* Month Dropdown */}
                         <select
                           data-testid="month"
                           required
@@ -218,6 +249,7 @@ export const AssessmentForm = () => {
                           ))}
                         </select>
 
+                        {/* Day Dropdown */}
                         <select
                           required
                           data-testid="day"
@@ -232,15 +264,14 @@ export const AssessmentForm = () => {
                           <option value="" disabled hidden>
                             Select Day
                           </option>
-                          {daysOfMonth.map((item, i) => {
-                            return (
-                              <option key={i} value={item}>
-                                {item}
-                              </option>
-                            );
-                          })}
+                          {daysOfMonth.map((item, i) => (
+                            <option key={i} value={item}>
+                              {item}
+                            </option>
+                          ))}
                         </select>
 
+                        {/* Year Dropdown */}
                         <select
                           required
                           data-testid="year"
@@ -255,17 +286,16 @@ export const AssessmentForm = () => {
                           <option value="" disabled hidden>
                             Select Year
                           </option>
-                          {years.map((item, i) => {
-                            return (
-                              <option key={i} value={item}>
-                                {item}
-                              </option>
-                            );
-                          })}
+                          {years.map((item, i) => (
+                            <option key={i} value={item}>
+                              {item}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
 
+                    {/* Ethnic Background Dropdown */}
                     <div className="p-2 mt-4">
                       <div className="p-2">Ethnic Background</div>
                       <select
@@ -287,6 +317,8 @@ export const AssessmentForm = () => {
                         ))}
                       </select>
                     </div>
+
+                    {/* Gender Radio Group */}
                     <div className="p-4">
                       <RadioGroup
                         data-testid="gender"
@@ -303,9 +335,12 @@ export const AssessmentForm = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* School Info Section */}
                 <div className="p-2">
                   <h1 className="font-bold text-2xl ">School Info</h1>
                   <div className="grid grid-cols-2 gap-2">
+                    {/* Graduation Year Dropdown */}
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">High School Grad-Year</div>
                       <select
@@ -328,6 +363,7 @@ export const AssessmentForm = () => {
                       </select>
                     </div>
 
+                    {/* Currently Attending Dropdown */}
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">Currently Attending</div>
                       <select
@@ -351,12 +387,15 @@ export const AssessmentForm = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Majors and Careers Section */}
                 <div className="p-2 mt-5">
                   <h1 className="font-semibold text-xl ">
                     To find majors offered by colleges that you are more likely
                     to attend, answer the following questions:
                   </h1>
                   <div className="grid grid-cols-2 gap-2 mt-4">
+                    {/* Region to School Dropdown */}
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">Choose your region to school</div>
                       <select
@@ -378,6 +417,8 @@ export const AssessmentForm = () => {
                         ))}
                       </select>
                     </div>
+
+                    {/* Type of University Dropdown */}
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">Type of university</div>
                       <select
@@ -399,6 +440,8 @@ export const AssessmentForm = () => {
                         ))}
                       </select>
                     </div>
+
+                    {/* Skill Dropdown */}
                     <div className="p-2 mt-5 ml-5">
                       <div className="p-2">Choose your skill</div>
                       <select
@@ -420,6 +463,8 @@ export const AssessmentForm = () => {
                         ))}
                       </select>
                     </div>
+
+                    {/* Interest Dropdown */}
                     <div className="p-2 mt-5 ml-5">
                       <div className="p-2">Choose your interest</div>
                       <select
@@ -444,6 +489,8 @@ export const AssessmentForm = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Button Section */}
               <div className="flex justify-center p-5">
                 <button
                   data-testid="button"
@@ -469,3 +516,24 @@ export const AssessmentForm = () => {
     </>
   );
 };
+
+// Header Section:
+
+// The outer div sets up a border with a blue color (#00aeef).
+// The inner div with a blue background creates a header section.
+// Main Content Section:
+
+// Contains introduction text, profile info, school info, and questions related to majors and careers.
+// Profile Info Section:
+
+// Includes inputs for Full Name, Date of Birth, Ethnic Background, and Gender.
+// School Info Section:
+
+// Includes inputs for High School Graduation Year and Currently Attending.
+// Majors and Careers Section:
+
+// Asks questions about the region to school, type of university, skills, and interests.
+// Button Section:
+
+// Displays a button for submitting the assessment.
+// The button is styled differently based on the loading state.
