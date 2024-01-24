@@ -1,3 +1,4 @@
+// Importing necessary modules and types
 import NextAuth from "next-auth/next";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -7,6 +8,7 @@ import { ConnectToDatabase } from "../lib/db";
 import { prisma } from "../lib/prisma";
 import bcrypt from "bcrypt";
 
+// Defining the User type
 type User = {
   id: string;
   name: string;
@@ -15,21 +17,25 @@ type User = {
   createdAt: Date;
 };
 
-// Assuming you have a Credentials type for the input
+// Defining the Credentials type for the input
 interface Credentials extends Record<"email" | "password", string> {}
 
+// Exporting the authentication options for NextAuth
 export const authOptions: NextAuthOptions = {
+  // Configuring pages
   pages: {
     signIn: "/login",
   },
+  // Configuring session strategy
   session: {
     strategy: "jwt",
   },
+  // Configuring authentication providers
   providers: [
+    // CredentialsProvider for custom authentication
     CredentialsProvider({
       name: "credentials",
       credentials: {},
-
       async authorize(credentials) {
         if (!credentials) {
           return null; // Handle the case where credentials are undefined
@@ -54,10 +60,12 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+    // GoogleProvider for Google authentication
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
+    // LinkedInProvider for LinkedIn authentication
     LinkedInProvider({
       clientId: process.env.LINKEDIN_CLIENT_ID as string,
       clientSecret: process.env.LINKEDIN_CLIENT_SECRET as string,
@@ -80,9 +88,12 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  // Configuring callbacks for user sign-in
   callbacks: {
     async signIn({ user, account }: any) {
       console.log(account);
+
+      // Handling Google provider sign-in
       if (account?.provider === "google") {
         const { email }: any = user;
 
@@ -112,6 +123,7 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
+      // Handling LinkedIn provider sign-in
       if (account?.provider === "linkedin") {
         const { email }: any = user;
 
@@ -144,9 +156,8 @@ export const authOptions: NextAuthOptions = {
     },
   },
 
+  // Configuring the NextAuth secret
   secret: process.env.NEXT_AUTH_SECRET,
 };
 
-function authorize(credentials: any, arg1: number) {
-  throw new Error("Function not implemented.");
-}
+

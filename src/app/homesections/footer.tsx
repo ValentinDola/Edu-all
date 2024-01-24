@@ -1,10 +1,14 @@
+// Importing React library for creating functional components
 import React from "react";
 
+// Functional component for rendering the Footer section
 export default function Footer() {
+  // Array of social media links with corresponding SVG icons
   const socials = [
     {
       href: "https://twitter.com/",
       svg: (
+        // Twitter SVG icon
         <svg
           className="h-4 w-4 fill-[rgba(8,37,82,0.6)] mr-4"
           xmlns="http://www.w3.org/2000/svg"
@@ -24,6 +28,7 @@ export default function Footer() {
     {
       href: "https://facebook.com/",
       svg: (
+        // Facebook SVG icon
         <svg
           className="h-4 w-4 fill-[rgba(8,37,82,0.6)] mr-4"
           xmlns="http://www.w3.org/2000/svg"
@@ -116,10 +121,14 @@ export default function Footer() {
   return (
     <footer className="bg-[url(/footer-bg.svg)] bg-no-repeat bg-auto bg-[0_1080px] mt-10 pb-[50px]">
       <div className="max-w-[1380px] w-full mx-auto my-0 px-5 py-0">
+        {/* Section with company information, resources, and contact details */}
+
         <div className="mt-[100px] mb-10 box-border w-full flex flex-initial flex-row flex-wrap">
+          {/* Company Information */}
           <div className="box-border basis-3/12 max-w-[25%] p-4">
             <h4 className="text-[2rem] font-semibold mb-[30px]">Company</h4>
             <ul>
+              {/* List items with links to company-related pages */}
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
@@ -164,9 +173,11 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+          {/* Resources */}
           <div className="box-border basis-3/12 max-w-[25%] p-4">
             <h4 className="text-[2rem] font-semibold mb-[30px]">Resources</h4>
             <ul>
+              {/* List items with links to resource-related pages */}
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
@@ -203,9 +214,11 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+          {/* Contact Details */}
           <div className="box-border basis-3/12 max-w-[25%] p-4">
             <h4 className="text-[2rem] font-semibold mb-[30px]">Contact</h4>
             <ul>
+              {/* List items with contact information */}
               <li className="mt-2 mb-0 list-none">
                 <a
                   className=" text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1rem]"
@@ -226,12 +239,16 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+        {/* Horizontal line as a separator */}
         <hr className="h-px w-full bg-[rgba(8,37,82,0.05)] border-0" />
+        {/* Section with social media links */}
         <div className="box-border w-full flex flex-initial flex-row flex-wrap">
           <div className="box-border basis-[58.3333333333%] max-w-[58.3333333333%] p-4">
             <ul>
+              {/* Mapping through socials array to render social media icons and links */}
               {socials.map((item, i) => (
                 <li key={i} className="inline-block mt-5">
+                  {/* Social media link with corresponding SVG icon */}
                   <a
                     className="font-medium text-[rgba(8,37,82,0.6)] transition-opacity duration-[0.3s] ease-[ease] text-[1.46rem]"
                     href={item.href}
@@ -247,3 +264,36 @@ export default function Footer() {
     </footer>
   );
 }
+
+// Comments:
+
+// Importing React:
+
+// The code imports the React library to create functional components.
+// Footer Component:
+
+// The Footer component represents the footer section of the webpage.
+// Social Media Links:
+
+// An array named socials contains objects with social media platform links and corresponding SVG icons.
+// Footer Structure:
+
+// The JSX structure defines the layout of the footer, including sections for company information, resources, contact details, and social media links.
+// Links and Lists:
+
+// The code uses unordered lists (ul) and list items (li) to organize links.
+// Responsive Design:
+
+// The footer layout is designed to be responsive, adjusting its appearance based on different screen sizes.
+// Background Image:
+
+// The footer includes a background image with specified styles.
+// Horizontal Line Separator:
+
+// A horizontal line is added as a separator between sections.
+// Social Media Icons:
+
+// Social media icons are rendered dynamically by mapping through the socials array.
+// Tailwind CSS Styling:
+
+// The code utilizes Tailwind CSS classes for styling, providing a clean and modern look to the footer.

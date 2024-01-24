@@ -5,6 +5,8 @@ import NavigationIndex from "../navigation";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 
 export default function FAQ() {
+  // Array containing FAQ data
+  // FAQ items with questions and descriptions
   const careerRecommendationFAQ = [
     {
       question: "What is Educational Recommendation?",
@@ -63,6 +65,7 @@ export default function FAQ() {
     },
   ];
 
+  // CSS classes for custom styling of Accordion components
   const itemClasses = {
     base: "py-0 w-full",
     title: "font-normal text-medium",
@@ -74,22 +77,27 @@ export default function FAQ() {
 
   return (
     <>
+      {/* Navigation component */}
       <NavigationIndex />
 
+      {/* FAQ section */}
       <section className="mt-[70px]">
         <main className="mx-auto max-w-5xl py-4 sm:px-6 lg:px-8">
+          {/* Accordion component for displaying FAQ items */}
           <Accordion
             showDivider={false}
             itemClasses={itemClasses}
             className="accordion"
           >
             {careerRecommendationFAQ.map((faq, i) => (
+              // AccordionItem component for each FAQ item
               <AccordionItem
                 key={i}
                 aria-label={faq.question}
                 title={faq.question}
                 className="accordion-item"
               >
+                {/* FAQ item description */}
                 {faq.description}
               </AccordionItem>
             ))}
@@ -99,3 +107,31 @@ export default function FAQ() {
     </>
   );
 }
+
+// Code Organization:
+
+// The code is well-organized, with clear sections for the import statements, component function, and the return block.
+// Navigation Component:
+
+// The integration of the NavigationIndex component at the beginning ensures consistent navigation across pages.
+// FAQ Data:
+
+// The array careerRecommendationFAQ stores FAQ data in an organized manner.
+// Accordion Component:
+
+// The Accordion component from @nextui-org/accordion is appropriately used to create an accordion-style FAQ section.
+// Item Classes Customization:
+
+// The use of itemClasses object allows for customizable styling of Accordion components, providing a visually appealing presentation.
+// Key Prop in Array Mapping:
+
+// Using the index (i) as the key prop in the array mapping of FAQ items is acceptable here since the FAQ items are static and not expected to change dynamically.
+// Section Margin:
+
+// The use of mt-[70px] on the section element provides a top margin, ensuring proper spacing between the navigation and FAQ content.
+// Responsive Design:
+
+// The use of mx-auto and max-w-5xl classes ensures that the FAQ content is centered and does not extend beyond a specified width, contributing to a responsive design.
+// CSS Classes for Styling:
+
+// The custom CSS classes (itemClasses) for styling Accordion components are appropriately used and named, enhancing readability.
