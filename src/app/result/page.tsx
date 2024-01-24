@@ -39,7 +39,7 @@ export default function Result() {
     // Simulating a delay of 5 seconds for loading demonstration
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 3000);
   }, [assData]);
 
   // JSX structure for the Result component

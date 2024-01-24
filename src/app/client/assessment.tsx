@@ -168,7 +168,7 @@ export const AssessmentForm = () => {
       }
 
       // Reset error alert after 5 seconds
-      setTimeout(() => setErrorAlert(false), 5000);
+      setTimeout(() => setErrorAlert(false), 3000);
     } catch (error) {}
   };
 
