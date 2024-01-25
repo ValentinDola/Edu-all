@@ -22,7 +22,8 @@ export default function ProfileIndex() {
     setLoading(true);
 
     // Transforming data to ensure it's an array
-    const data: any = localStorage.getItem(JSON.parse("Data"));
+    const unparsed: any = localStorage.getItem("Data") || null;
+    const data = JSON.parse(unparsed);
 
     // Check if transformed data has length greater than 0
     if (data.length > 0) setHaveData(true);
