@@ -63,4 +63,9 @@ test("system test", async ({ page }) => {
     await page.getByLabel('Profile').click();
     await page.getByLabel('avatar').click();
     await page.getByLabel('Log').click();
+
+    await page.goto('https://edu-all-k8z7.vercel.app/');
+  await page.getByRole('link', { name: 'Universities' }).click();
+  await page.getByPlaceholder('University').click();
+  await page.getByPlaceholder('University').fill('ghana');
 });
