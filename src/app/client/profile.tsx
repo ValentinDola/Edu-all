@@ -26,7 +26,7 @@ export default function ProfileIndex() {
     const data = JSON.parse(unparsed);
 
     // Check if transformed data has length greater than 0
-    if (data.length > 0) setHaveData(true);
+    if (data?.length > 0) setHaveData(true);
 
     // Simulate loading delay
     setTimeout(() => {
