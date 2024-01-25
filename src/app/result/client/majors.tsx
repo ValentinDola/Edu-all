@@ -42,33 +42,11 @@ export default function Majors() {
 
   // useEffect to update the names state based on the assessment data
   useEffect(() => {
-    // Transforming the assessment data into an array if it's not already
-    const transformedData = Array.isArray(assData) ? assData : [assData];
+    const unparsed: any = localStorage.getItem("UniqueMajors");
+    const uniqueMajors = JSON.parse(unparsed);
+    const skill: any = localStorage.getItem("Skill");
+    setSkill(skill);
 
-    // Extracting skill from transformed data
-    const skill = transformedData.map((item) => item.skill);
-
-    // Setting the skill state based on the extracted skill
-    setSkill(skill.toString());
-
-    // Matching majors based on skills
-    const matchedMajors = majorsSkills.majors.filter((major) =>
-      major.skills.includes(skill.toString())
-    );
-
-    // Extracting major names from matched majors
-    const majorName = matchedMajors.map((major) => major.name);
-
-    // Function to remove duplicate major names
-    const removeDuplicates = (array: any[]) => {
-      return array.filter(
-        (value: any, index: any, self: string | any[]) =>
-          self.indexOf(value) === index
-      );
-    };
-
-    // Removing duplicates and setting the unique major names in the state
-    const uniqueMajors = removeDuplicates(majorName);
     setNames(uniqueMajors);
   }, [assData]);
 
@@ -90,7 +68,8 @@ export default function Majors() {
     <div>
       <div className="p-2">
         {/* Displaying information about recommended majors based on the skill */}
-        These are the majors we recommend based on your skill of {skill}
+        These are the majors we recommend based on your skill of{" "}
+        <strong>{skill}</strong>
       </div>
       <ul className="grid grid-cols-2 gap-3">
         {/* Mapping through matched majors and displaying them as clickable items */}

@@ -4,6 +4,17 @@ import React from "react";
 // Importing the UnisComponent from the current directory
 import UnisComponent from ".";
 
+type DataType = {
+  map(arg0: (item: any, i: any) => React.JSX.Element): React.ReactNode;
+  name: String;
+  nickname: String;
+  location: String;
+  logo: String;
+  icon: String;
+  website: String;
+  type: String;
+};
+
 // Defining the Unis function as an asynchronous arrow function
 const Unis = async () => {
   // Returning the UnisComponent

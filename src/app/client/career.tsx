@@ -45,17 +45,18 @@ export default function CareerComponent() {
   const handleCategoriesActivity = (index: any) => {
     setActive(index);
     const cat: any = careers[index]?.categories || null;
+    localStorage.setItem("Categorie", JSON.stringify(cat));
     setCategories(cat);
-    setData(cat);
   };
 
   // Effect for handling data updates and loading state
   useEffect(() => {
     const cat: any = careers[active]?.categories || null;
-    setData(cat);
+    localStorage.setItem("Categorie", JSON.stringify(cat));
+    setCategories(cat);
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 4000);
   }, [active, setData]);
 
   return (

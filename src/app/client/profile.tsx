@@ -22,10 +22,10 @@ export default function ProfileIndex() {
     setLoading(true);
 
     // Transforming data to ensure it's an array
-    const transformedData = Array.isArray(assData) ? assData : [assData];
+    const data: any = localStorage.getItem(JSON.parse("Data"));
 
     // Check if transformed data has length greater than 0
-    if (transformedData.length > 0) setHaveData(true);
+    if (data.length > 0) setHaveData(true);
 
     // Simulate loading delay
     setTimeout(() => {

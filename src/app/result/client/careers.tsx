@@ -20,20 +20,11 @@ export default function Careers() {
 
   // useEffect to update names and skill based on the assessment data
   useEffect(() => {
-    // Transforming the assessment data into an array if it's not already
-    const transformedData = Array.isArray(assData) ? assData : [assData];
+    const Unparsed: any = localStorage.getItem("Career");
+    const skill: any = localStorage.getItem("Skill");
 
-    // Extracting skills from transformed data and setting the skill state
-    const skill = transformedData.map((item) => item.skill);
-    setSkill(skill.toString());
-
-    // Filtering careers based on matching skills
-    const matchedCareers = careerSkills.skill.filter((career) =>
-      career.skills.includes(skill.toString())
-    );
-
-    // Extracting career names from matched careers and setting the names state
-    const careerName = matchedCareers.map((career) => career.name);
+    const careerName = JSON.parse(Unparsed);
+    setSkill(skill);
     setNames(careerName);
   }, [assData]);
 
@@ -43,7 +34,7 @@ export default function Careers() {
       {/* Displaying a heading with the selected skill */}
       <div className="p-2" data-testid="heading">
         These are the careers that you can be successful in based on your skill
-        of {skill}
+        of <strong>{skill}</strong>
       </div>
 
       {/* Displaying a list of career names */}

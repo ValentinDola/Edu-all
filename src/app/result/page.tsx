@@ -1,3 +1,5 @@
+"use client";
+
 // Importing React, useEffect, useState from React library
 import React, { useEffect, useState } from "react";
 
@@ -29,13 +31,8 @@ export default function Result() {
   // State to manage loading status
   const [loading, setLoading] = useState(true);
 
-  // State to store assessment data
-  const [assessment, setAssessment]: any = useState([]);
-
   // useEffect to update assessment data and loading status
   useEffect(() => {
-    setAssessment(assData);
-
     // Simulating a delay of 5 seconds for loading demonstration
     setTimeout(() => {
       setLoading(false);

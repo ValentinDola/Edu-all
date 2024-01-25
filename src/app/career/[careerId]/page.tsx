@@ -1,3 +1,5 @@
+"use client";
+
 // Import React for creating React components
 import React, { useEffect, useState } from "react";
 
@@ -26,8 +28,9 @@ export default function Dashboard({ params }: { params: { careerId: any } }) {
 
   // useEffect to update majors state when data changes
   useEffect(() => {
-    setMajors(data);
-    console.log(data); // Log data to the console for debugging
+    const unparsed: any = localStorage.getItem("Categorie");
+    const major = JSON.parse(unparsed);
+    setMajors(major);
   }, [data]);
 
   return (

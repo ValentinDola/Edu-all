@@ -66,3 +66,24 @@ model Videos {
   careerId String @db.ObjectId
   career   Career @relation(fields: [careerId], references: [id])
 }
+
+model Namesma {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  majors String[]
+}
+
+model Namesca {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  careers String[]
+}
+
+model Unis {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  nickname String
+  location String
+  logo     String
+  icon     String
+  website  String
+  type     String
+}

@@ -8,6 +8,14 @@ import { useSession } from "next-auth/react";
 import { useGlobalContext } from "../context/store";
 import { useRouter } from "next/navigation";
 import Alert from "../components/alert";
+// Importing career data and skills data from the specified paths
+import { careers, careerSkills } from "@/app/components/data";
+
+// Importing Unis data from the specified path
+import { Unis } from "@/app/components/data";
+
+// Importing majorsSkills data from the specified path
+import { majorsSkills } from "@/app/components/data";
 
 // Define arrays for dropdown options
 
@@ -38,8 +46,8 @@ const years = Array.from(
 
 // Generate an array representing graduation years from 1950 to 2030 (inclusive)
 const graduationYears = Array.from(
-  { length: 2030 - 1950 + 1 },
-  (_, index) => 1950 + index
+  { length: 2030 - 2005 + 1 },
+  (_, index) => 2005 + index
 );
 
 // ... (options for ethnic background)
@@ -136,9 +144,16 @@ export const AssessmentForm = () => {
   const [skill, setSkill] = React.useState<string>("");
   const [career, setCareer] = React.useState<string>("");
   const [errorAlert, setErrorAlert] = useState<boolean>(false);
+  // State to store career names
+  const [names, setNames]: any = useState([]);
+  // State to store matched universities
+  const [unis, setUnis]: any = useState([]);
+
+  // State to store matched major names and skills
+  const [namesMajor, setNamesMajor]: any = useState([]);
 
   // Handle form submission
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const data: any = {
       monthOf,
       date,
@@ -155,11 +170,91 @@ export const AssessmentForm = () => {
     try {
       if (skill || career !== "") {
         setLoading(true);
-
+        console.log("DATA : ", data);
+        setAssData(data);
         // Simulate a delay before redirecting
         setTimeout(() => {
-          console.log("DATA : ", data);
-          setAssData(data);
+          // Transforming the assessment data into an array if it's not already
+          const transformedData = Array.isArray(data) ? data : [data];
+          // Extracting skills from transformed data and setting the skill state
+          const skill = transformedData.map(
+            (item: { skill: any }) => item.skill
+          );
+          setSkill(skill.toString());
+
+          // Filtering careers based on matching skills
+          const matchedCareers = careerSkills.skill.filter((career) =>
+            career.skills.includes(skill.toString())
+          );
+
+          // Extracting career names from matched careers and setting the names state
+          const careerNames = matchedCareers.map((career) => career.name);
+          console.log(careerNames);
+          localStorage.setItem("Skill", skill.toString());
+          localStorage.setItem("Career", JSON.stringify(careerNames));
+          localStorage.setItem("Data", JSON.stringify(transformedData));
+          setNames(careerNames);
+
+          // Extracting type and region from transformed data
+          const type = transformedData.map((item) => item.type);
+          const region = transformedData.map((item) => item.region);
+
+          // Filtering universities based on type and region
+          const matchedUnis = Unis.filter((uni) => {
+            // Split the location string by comma and trim the parts
+            const locationParts = uni.location
+              .split(",")
+              .map((part) => part.trim());
+
+            // Filtering out the region from location parts
+            const filteredLocationParts = locationParts.filter(
+              (part) => part !== region.toString()
+            );
+
+            // Joining the filtered parts back into a string
+            const filteredLocationString = filteredLocationParts.join(", ");
+
+            // Checking if type matches and the region is filtered out
+            return (
+              uni.type === type.toString()
+              //   &&
+              // filteredLocationString == region.toString()
+            );
+          });
+
+          // Extracting universities from matched universities and setting the unis state
+          const unis = matchedUnis.map((uni) => uni);
+          console.log(unis);
+          localStorage.setItem("Unis", JSON.stringify(unis));
+          setUnis(unis);
+
+          // Extracting skill from transformed data
+          const skillMa = transformedData.map((item) => item.skill);
+
+          // Setting the skill state based on the extracted skill
+          setSkill(skillMa.toString());
+
+          // Matching majors based on skills
+          const matchedMajors = majorsSkills.majors.filter((major) =>
+            major.skills.includes(skillMa.toString())
+          );
+
+          // Extracting major names from matched majors
+          const majorName = matchedMajors.map((major) => major.name);
+
+          // Function to remove duplicate major names
+          const removeDuplicates = (array: any[]) => {
+            return array.filter(
+              (value: any, index: any, self: string | any[]) =>
+                self.indexOf(value) === index
+            );
+          };
+
+          // Removing duplicates and setting the unique major names in the state
+          const uniqueMajors = removeDuplicates(majorName);
+          console.log(uniqueMajors);
+          localStorage.setItem("UniqueMajors", JSON.stringify(uniqueMajors));
+          setNamesMajor(uniqueMajors);
           router.replace("/result");
         }, 4000);
       } else {

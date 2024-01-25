@@ -17,7 +17,9 @@ const Skills = (props: any) => {
 
   // useEffect to update career state when data changes
   useEffect(() => {
-    setCareer(data);
+    const unparsed: any = localStorage.getItem("Categorie");
+    const cat = JSON.parse(unparsed);
+    setCareer(cat);
   }, [data]);
 
   return (

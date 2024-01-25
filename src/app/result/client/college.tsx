@@ -18,35 +18,9 @@ export default function Colleges() {
   // useEffect to update the unis state based on the assessment data
   useEffect(() => {
     // Transforming the assessment data into an array if it's not already
-    const transformedData = Array.isArray(assData) ? assData : [assData];
+    const unparsed: any = localStorage.getItem("Unis");
+    const unis = JSON.parse(unparsed);
 
-    // Extracting type and region from transformed data
-    const type = transformedData.map((item) => item.type);
-    const region = transformedData.map((item) => item.region);
-
-    // Filtering universities based on type and region
-    const matchedUnis = Unis.filter((uni) => {
-      // Split the location string by comma and trim the parts
-      const locationParts = uni.location.split(",").map((part) => part.trim());
-
-      // Filtering out the region from location parts
-      const filteredLocationParts = locationParts.filter(
-        (part) => part !== region.toString()
-      );
-
-      // Joining the filtered parts back into a string
-      const filteredLocationString = filteredLocationParts.join(", ");
-
-      // Checking if type matches and the region is filtered out
-      return (
-        uni.type === type.toString()
-        //   &&
-        // filteredLocationString == region.toString()
-      );
-    });
-
-    // Extracting universities from matched universities and setting the unis state
-    const unis = matchedUnis.map((uni) => uni);
     setUnis(unis);
   }, [assData]);
 

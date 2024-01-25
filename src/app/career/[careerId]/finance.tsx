@@ -15,7 +15,9 @@ const Finance = (props: any) => {
 
   // useEffect to update major state when data changes
   useEffect(() => {
-    setMajor(data);
+    const unparsed: any = localStorage.getItem("Categorie");
+    const cat = JSON.parse(unparsed);
+    setMajor(cat);
   }, [data]);
 
   // Function to convert USD to Ghanaian Cedis
