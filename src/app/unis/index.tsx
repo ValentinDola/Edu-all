@@ -32,7 +32,7 @@ export default function UnisComponent() {
     const unisData = JSON.parse(Unparsed);
 
     setData(unisData);
-  });
+  }, []);
 
   const handleChange = (e: { target: { value: string } }) => {
     // Update the searchQuery state when the input value changes

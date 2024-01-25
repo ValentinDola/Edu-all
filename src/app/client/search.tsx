@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Input } from "@nextui-org/react";
-import { SearchIcon } from "../components/icon";
+import SearchIcon from "../components/icon";
 
 import {
   Modal,
