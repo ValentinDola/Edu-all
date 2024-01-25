@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { UserInfo } from "./user";
 import Image from "next/image";
-import { Search } from "./search";
 
 // Navigation component definition
 const Navigation = () => {
