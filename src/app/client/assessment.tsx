@@ -125,6 +125,71 @@ const interestingCareers = [
   "User Experience (UX) Designer",
 ];
 
+const Grades = [
+  {
+    A1: [
+      "English Language",
+      "Integrated Science",
+      "Mathematics (Core)",
+      "Social Studies",
+    ],
+    B2: [
+      "English Language",
+      "Integrated Science",
+      "Mathematics (Core)",
+      "Social Studies",
+    ],
+    B3: [
+      "English Language",
+      "Integrated Science",
+      "Mathematics (Core)",
+      "Social Studies",
+    ],
+    C4: [
+      "English Language",
+      "Integrated Science",
+      "Mathematics (Core)",
+      "Social Studies",
+    ],
+    C5: [
+      "English Language",
+      "Integrated Science",
+      "Mathematics (Core)",
+      "Social Studies",
+    ],
+    C6: [
+      "English Language",
+      "Integrated Science",
+      "Mathematics (Core)",
+      "Social Studies",
+    ],
+  },
+];
+
+const Programmes = [
+  {
+    program: "Bachelor of Arts",
+    grades: Grades,
+  },
+  { program: "Bachelor of Fine Arts", grades: Grades },
+  { program: "Bachelor of Law", grades: Grades },
+  { program: "Bachelor of Science in Administration", grades: Grades },
+  { program: "Bachelor of Science in Agriculture", grades: Grades },
+  { program: "Doctor of Veterinary Medicine", grades: Grades },
+  {
+    program:
+      "Bachelor of Science in Engineering (Agricultural, Biomedical, Computer, Food Process, Materials)",
+    grades: Grades,
+  },
+  {
+    program: "Bachelor of Science in Family and Consumer Sciences",
+    grades: Grades,
+  },
+  { program: "Bachelor of Science in Natural Sciences", grades: Grades },
+];
+
+const grades = ["A1", "B2", "B3", "C4", "C5", "C6"];
+
 // Export the AssessmentForm component
 export const AssessmentForm = () => {
   // Initialize state variables
@@ -139,10 +204,16 @@ export const AssessmentForm = () => {
   const [gender, setGender] = useState("Male");
   const [graduation, setGraduation] = React.useState<string>("");
   const [currently, setCurrently] = React.useState<string>("");
+  const [programmes, setProgrammes] = React.useState<string>("");
   const [region, setRegion] = React.useState<string>("");
   const [type, setType] = React.useState<string>("");
   const [skill, setSkill] = React.useState<string>("");
   const [career, setCareer] = React.useState<string>("");
+  const [EnglishLanguage, setEnglishLanguage] = React.useState<string>("");
+  const [IntegratedScience, setIntegratedScience] = React.useState<string>("");
+  const [Mathematics, setMathematics] = React.useState<string>("");
+  const [SocialStudies, setSocialStudies] = React.useState<string>("");
+  const [programmesActive, setProgrammesActive] = useState<boolean>(true);
   const [errorAlert, setErrorAlert] = useState<boolean>(false);
   // State to store career names
   const [names, setNames]: any = useState([]);
@@ -166,9 +237,14 @@ export const AssessmentForm = () => {
       type,
       skill,
       career,
+      programmes,
+      EnglishLanguage,
+      SocialStudies,
+      Mathematics,
+      IntegratedScience,
     };
     try {
-      if (skill || career !== "") {
+      if (skill || career || programmes !== "") {
         setLoading(true);
         console.log("DATA : ", data);
         setAssData(data);
@@ -256,7 +332,7 @@ export const AssessmentForm = () => {
           localStorage.setItem("UniqueMajors", JSON.stringify(uniqueMajors));
           setNamesMajor(uniqueMajors);
           router.replace("/result");
-        }, 4000);
+        }, 2000);
       } else {
         console.log("Error");
         setErrorAlert(true);
@@ -335,7 +411,7 @@ export const AssessmentForm = () => {
                           className="py-2 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
                         >
                           <option value="" disabled hidden>
-                            Select Month
+                            Month
                           </option>
                           {month.map((item, i) => (
                             <option key={i} value={item.value}>
@@ -357,7 +433,7 @@ export const AssessmentForm = () => {
                           }}
                         >
                           <option value="" disabled hidden>
-                            Select Day
+                            Day
                           </option>
                           {daysOfMonth.map((item, i) => (
                             <option key={i} value={item}>
@@ -379,7 +455,7 @@ export const AssessmentForm = () => {
                           }}
                         >
                           <option value="" disabled hidden>
-                            Select Year
+                            Year
                           </option>
                           {years.map((item, i) => (
                             <option key={i} value={item}>
@@ -403,7 +479,7 @@ export const AssessmentForm = () => {
                         }}
                       >
                         <option value="" disabled hidden>
-                          Select Ethnic
+                          Choose
                         </option>
                         {ethnic.map((item, i) => (
                           <option key={i} value={item.value}>
@@ -434,7 +510,7 @@ export const AssessmentForm = () => {
                 {/* School Info Section */}
                 <div className="p-2">
                   <h1 className="font-bold text-2xl ">School Info</h1>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-3 gap-2">
                     {/* Graduation Year Dropdown */}
                     <div className="p-2 mt-4 ml-5">
                       <div className="p-2">High School Grad-Year</div>
@@ -448,7 +524,7 @@ export const AssessmentForm = () => {
                         }}
                       >
                         <option value="" disabled hidden>
-                          Select Graduation Year
+                          Choose
                         </option>
                         {graduationYears.map((item, i) => (
                           <option key={i} value={item}>
@@ -471,11 +547,125 @@ export const AssessmentForm = () => {
                         }}
                       >
                         <option value="" disabled hidden>
-                          Select Currently Attending
+                          Choose
                         </option>
                         {currentlyAttending.map((item, i) => (
                           <option key={i} value={item.value}>
                             {item.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Undergraduate Programmes Dropdown */}
+                    <div className="p-2 mt-4 ml-5">
+                      <div className="p-2">Undergraduate Programmes</div>
+                      <select
+                        data-testid="currently"
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={programmes}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setProgrammes(e.target.value);
+                          setProgrammesActive(!programmesActive);
+                        }}
+                      >
+                        <option value="" disabled hidden>
+                          Choose
+                        </option>
+                        {Programmes.map((item, i) => (
+                          <option key={i} value={item.program}>
+                            {item.program}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-4 gap-2">
+                    <div className="p-2 mt-4 ml-5">
+                      <div className="p-2">English Language Grade</div>
+                      <select
+                        disabled={programmesActive}
+                        data-testid="english"
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={EnglishLanguage}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setEnglishLanguage(e.target.value);
+                        }}
+                      >
+                        <option value="" disabled hidden>
+                          Choose
+                        </option>
+                        {grades.map((item, i) => (
+                          <option key={i} value={item}>
+                            {item}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="p-2 mt-4 ml-5">
+                      <div className="p-2">Social Studies Grade</div>
+                      <select
+                        disabled={programmesActive}
+                        data-testid="socialStudies"
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={SocialStudies}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setSocialStudies(e.target.value);
+                        }}
+                      >
+                        <option value="" disabled hidden>
+                          Choose
+                        </option>
+                        {grades.map((item, i) => (
+                          <option key={i} value={item}>
+                            {item}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="p-2 mt-4 ml-5">
+                      <div className="p-2">Mathematics Grade</div>
+                      <select
+                        disabled={programmesActive}
+                        data-testid="mathematics"
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={Mathematics}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setMathematics(e.target.value);
+                        }}
+                      >
+                        <option value="" disabled hidden>
+                          Choose
+                        </option>
+                        {grades.map((item, i) => (
+                          <option key={i} value={item}>
+                            {item}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="p-2 mt-4 ml-5">
+                      <div className="p-2">Intergrated Science Grade</div>
+                      <select
+                        disabled={programmesActive}
+                        data-testid="intergratedScience"
+                        required
+                        className="py-3 px-3 outline-none bg-[#F1F2F2] w-full cursor-pointer"
+                        value={IntegratedScience}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setIntegratedScience(e.target.value);
+                        }}
+                      >
+                        <option value="" disabled hidden>
+                          Choose
+                        </option>
+                        {grades.map((item, i) => (
+                          <option key={i} value={item}>
+                            {item}
                           </option>
                         ))}
                       </select>
@@ -489,10 +679,10 @@ export const AssessmentForm = () => {
                     To find majors offered by colleges that you are more likely
                     to attend, answer the following questions:
                   </h1>
-                  <div className="grid grid-cols-2 gap-2 mt-4">
+                  <div className="grid grid-cols-4 gap-2 mt-4">
                     {/* Region to School Dropdown */}
                     <div className="p-2 mt-4 ml-5">
-                      <div className="p-2">Choose your region to school</div>
+                      <div className="p-2">Region to school</div>
                       <select
                         data-testid="region"
                         required
@@ -503,7 +693,7 @@ export const AssessmentForm = () => {
                         }}
                       >
                         <option value="" disabled hidden>
-                          Select Region
+                          Choose
                         </option>
                         {ghanaRegions.map((item, i) => (
                           <option key={i} value={item.value}>
@@ -526,7 +716,7 @@ export const AssessmentForm = () => {
                         }}
                       >
                         <option value="" disabled hidden>
-                          Select Type of Unis
+                          Choose
                         </option>
                         {typeUnis.map((item, i) => (
                           <option key={i} value={item.value}>
@@ -538,7 +728,7 @@ export const AssessmentForm = () => {
 
                     {/* Skill Dropdown */}
                     <div className="p-2 mt-5 ml-5">
-                      <div className="p-2">Choose your skill</div>
+                      <div className="p-2">Skill</div>
                       <select
                         data-testid="skill"
                         required
@@ -549,7 +739,7 @@ export const AssessmentForm = () => {
                         }}
                       >
                         <option value="" disabled hidden>
-                          Select Skill
+                          Choose
                         </option>
                         {collegeSkills.map((item, i) => (
                           <option key={i} value={item.value}>
@@ -561,7 +751,7 @@ export const AssessmentForm = () => {
 
                     {/* Interest Dropdown */}
                     <div className="p-2 mt-5 ml-5">
-                      <div className="p-2">Choose your interest</div>
+                      <div className="p-2">Interest</div>
                       <select
                         data-testid="career"
                         required
@@ -572,7 +762,7 @@ export const AssessmentForm = () => {
                         }}
                       >
                         <option value="" disabled hidden>
-                          Select Interest
+                          Choose
                         </option>
                         {interestingCareers.map((item, i) => (
                           <option key={i} value={item}>
